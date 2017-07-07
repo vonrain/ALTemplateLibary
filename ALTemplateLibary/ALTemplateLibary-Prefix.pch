@@ -1,0 +1,20 @@
+//
+//  ALTemplateLibary-Prefix.pch
+//  ALTemplateLibary
+//
+//  Created by allen on 7/6/17.
+//  Copyright © 2017 allen. All rights reserved.
+//
+
+#ifndef ALTemplateLibary_Prefix_pch
+#define ALTemplateLibary_Prefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#import "Masonry.h"
+
+
+#define MainHeight  [[UIScreen mainScreen] bounds].size.height
+#define MainWidth   [[UIScreen mainScreen] bounds].size.width
+
+#endif /* ALTemplateLibary_Prefix_pch */
