@@ -59,18 +59,14 @@
 
 -(void)generateData:(id)data {
     
-    NSMutableArray *collectionCellArrary = [NSMutableArray new];
-    for (int i =1 ; i < 5; i++) {
-        NSMutableArray *itemArrary = [NSMutableArray new];
-        //        for (int j = 0; j<i; j++) {
-        for (int j = 0; j<15; j++) {
-            [itemArrary addObject:@(j)];
-        }
-        [collectionCellArrary addObject:[itemArrary copy]];
+    NSMutableArray *itemArrary = [NSMutableArray new];
+    for (int i =1 ; i < 8; i++) {
+        NSString *item = [NSString stringWithFormat:@"华为p%d",i];
+        [itemArrary addObject:item];
     }
     
-    [self.productsListVC generateData:nil];
-    [self.moreProductVC generateData:nil];
+    [self.productsListVC generateData:itemArrary];
+    [self.moreProductVC generateData:itemArrary];
 //    self.collectionCellItemArrary = [collectionCellArrary mutableCopy];
 }
 

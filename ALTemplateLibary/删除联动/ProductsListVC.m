@@ -31,7 +31,6 @@ typedef NS_ENUM(NSUInteger, XWDragCellCollectionViewScrollDirection) {
 @property(nonatomic)         CGPoint                      currentContentOffset;                  // default CGPointZero
 
 @property (nonatomic, strong) CADisplayLink *edgeTimer;
-@property (nonatomic) BOOL isPanning;
 @property (nonatomic, assign) XWDragCellCollectionViewScrollDirection scrollDirection;
 @property (nonatomic, weak) UIView *tempMoveCell;
 
@@ -39,11 +38,20 @@ typedef NS_ENUM(NSUInteger, XWDragCellCollectionViewScrollDirection) {
 
 @implementation ProductsListVC
 
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor yellowColor];
     [self layoutPageView];
     [self addRecognize];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addItemAction:) name:kAddProductNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteItemAction:) name:kDeleteProductNotification object:nil];
+    
+ 
     // Do any additional setup after loading the view.
 }
 
@@ -64,14 +72,28 @@ typedef NS_ENUM(NSUInteger, XWDragCellCollectionViewScrollDirection) {
 
 
 -(void)generateData:(id)data {
-    NSMutableArray *itemArrary = [NSMutableArray new];
-    for (int i =1 ; i < 8; i++) {
-        NSString *item = [NSString stringWithFormat:@"华为p%d",i];
-        [itemArrary addObject:item];
-    }
-    
-    self.itemArrary = itemArrary;
+    NSMutableArray *itemArrary =(NSMutableArray*)data ;
+    self.itemArrary = [itemArrary mutableCopy];
 }
+
+#pragma mark - Notification
+- (void)deleteItemAction:(NSNotification *)notification {
+    NSLog(@"seg2 to seg1 :%@",notification.object);
+    NSLog(@"info is %@", notification.userInfo);
+    NSString *deleteItem = (NSString*)notification.userInfo[@"title"];
+    [self.itemArrary removeObject:deleteItem];
+    [self.productsTableView reloadData];
+}
+
+- (void)addItemAction:(NSNotification *)notification {
+    NSLog(@"seg2 to seg1 :%@",notification.object);
+    NSLog(@"info is %@", notification.userInfo);
+    NSString *addItem = (NSString*)notification.userInfo[@"title"];
+    [self.itemArrary addObject:addItem];
+    [self.productsTableView reloadData];
+}
+
+
 #pragma mark - UITableViewDataSource Methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -108,8 +130,12 @@ typedef NS_ENUM(NSUInteger, XWDragCellCollectionViewScrollDirection) {
 #pragma mark - CustomerDelegate
 - (void)didDelete:(UITableViewCell *)cell{
     NSIndexPath *indexPath = [self.productsTableView indexPathForCell:cell];
-    [self.itemArrary removeObjectAtIndex:indexPath.row];
     
+    NSString *item = self.itemArrary[indexPath.row];
+    NSDictionary *info = @{@"title":item};
+    [[NSNotificationCenter defaultCenter] postNotificationName:kDeleteMoreProductNotification object:self userInfo:info];
+    
+    [self.itemArrary removeObjectAtIndex:indexPath.row];
     self.resetGesture = YES;
     
     cell.maskView.hidden = YES;
@@ -268,7 +294,6 @@ typedef NS_ENUM(NSUInteger, XWDragCellCollectionViewScrollDirection) {
             //            UICollectionViewCell *cell = [self.productsTableView cellForItemAtIndexPath:sourceIndexPath];
             ProductTVCell *cell = (ProductTVCell*)[self.productsTableView cellForRowAtIndexPath:sourceIndexPath];
             cell.alpha = 0.0;
-            _isPanning = NO;
             [self xwp_stopEdgeTimer];
             
             [UIView animateWithDuration:0.25 animations:^{

@@ -17,4 +17,8 @@
 #define MainHeight  [[UIScreen mainScreen] bounds].size.height
 #define MainWidth   [[UIScreen mainScreen] bounds].size.width
 
+#define kAddProductNotification  @"kAddProductNotification"
+#define kDeleteProductNotification  @"kDeleteProductNotification"
+#define kDeleteMoreProductNotification  @"kDeleteMoreProductNotification"
+
 #endif /* ALTemplateLibary_Prefix_pch */

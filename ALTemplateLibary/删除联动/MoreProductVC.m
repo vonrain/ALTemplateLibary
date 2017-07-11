@@ -20,10 +20,17 @@
 
 @implementation MoreProductVC
 
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self layoutPageView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteAction:) name:kDeleteMoreProductNotification object:nil];
+    
     // Do any additional setup after loading the view.
 }
 
@@ -49,18 +56,31 @@
 }
 
 -(void)generateData:(id)data {
-    
-    NSMutableArray *collectionCellArrary = [NSMutableArray new];
-    for (int i =1 ; i < 15; i++) {
-        NSString *item = [NSString stringWithFormat:@"华为p%d",i];
-        [collectionCellArrary addObject:item];
-    }
-    
-    self.collectionCellItemArrary = [collectionCellArrary mutableCopy];
+    NSMutableArray *itemArrary =(NSMutableArray*)data ;
+    self.collectionCellItemArrary = [itemArrary mutableCopy];
 }
 
-
 #pragma mark - Helper methods
+#pragma mark - Notification
+- (void)deleteAction:(NSNotification *)notification {
+    NSLog(@"seg2 to seg1 :%@",notification.object);
+    NSLog(@"info is %@", notification.userInfo);
+    NSString *item = (NSString *)notification.userInfo[@"title"];
+    [self.collectionCellItemArrary removeObject:item];
+    [self.collectionView reloadData];
+    
+    
+//    [seg2DeSelectedArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        BOOL isContain = [self.dataArray containsObject:obj];
+//        if (isContain == YES) {
+//            return ;
+//        } else {
+//            [self.dataArray addObjectsFromArray:seg2DeSelectedArray];
+//            [self.collectionView reloadData];
+//        }
+//    }];
+}
+
 
 #pragma mark - click events
 -(void)addClick:(id)sender{
@@ -69,14 +89,22 @@
     NSString *item = [NSString stringWithFormat:@"iPhone %d",i++];
     [self.collectionCellItemArrary addObject:item];
     [self.collectionView reloadData];
+    
+    NSDictionary *info = @{@"title":item};
+    [[NSNotificationCenter defaultCenter] postNotificationName:kAddProductNotification object:self userInfo:info];
 }
 
 #pragma mark - CustomerDelegate
 #pragma mark - MoreProductCollectionCellDelegate
 - (void)didDelete:(UICollectionViewCell *)cell {
+    
     NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
+    NSString *item = [self.collectionCellItemArrary[indexPath.row] copy];
+    NSDictionary *info = @{@"title":item};
+    [[NSNotificationCenter defaultCenter] postNotificationName:kDeleteProductNotification object:self userInfo:info];
     [self.collectionCellItemArrary removeObjectAtIndex:indexPath.row];
     [self.collectionView reloadData];
+    
 }
 
 #pragma mark - UICollectionViewDataSource Methods
