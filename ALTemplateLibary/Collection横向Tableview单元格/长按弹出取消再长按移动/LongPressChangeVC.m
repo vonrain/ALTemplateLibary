@@ -27,7 +27,7 @@ typedef NS_ENUM(NSUInteger, XWDragCellCollectionViewScrollDirection) {
 @property (nonatomic, strong) UIView   *maskView;
 @property (nonatomic, strong) UIView   *mask;
 @property (nonatomic) BOOL resetGesture;
-/**抖动手势*/
+/**删除手势*/
 @property (nonatomic,strong) UILongPressGestureRecognizer *recognize;
 /**移动手势*/
 @property (nonatomic,strong) UILongPressGestureRecognizer *longGesture;

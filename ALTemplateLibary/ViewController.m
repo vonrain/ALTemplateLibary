@@ -10,6 +10,7 @@
 #import "LongPressChangeVC.h"
 #import "DragVC.h"
 #import "DragUITableViewVC.h"
+#import "ParityListVC.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -43,10 +44,15 @@
     [dragUITableViewVC generateData:nil];
     dragUITableViewVC.title = @"tableview横向布局";
     
+    ParityListVC *parityListVC = [[ParityListVC alloc] init];
+    [parityListVC generateData:nil];
+    parityListVC.title = @"删除联动";
+    
     self.controllers = @[
                          longPressChangVC,
                          dragVC,
                          dragUITableViewVC,
+                         parityListVC
                          ];
 }
 
