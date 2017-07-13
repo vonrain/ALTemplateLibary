@@ -44,9 +44,10 @@ typedef NS_ENUM(NSUInteger, XWDragCellCollectionViewScrollDirection) {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor yellowColor];
+    self.view.backgroundColor = [UIColor lightGrayColor];
     [self layoutPageView];
     [self addRecognize];
+//    [self addLongGesture];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addItemAction:) name:kAddProductNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteItemAction:) name:kDeleteProductNotification object:nil];
@@ -78,17 +79,13 @@ typedef NS_ENUM(NSUInteger, XWDragCellCollectionViewScrollDirection) {
 
 #pragma mark - Notification
 - (void)deleteItemAction:(NSNotification *)notification {
-    NSLog(@"seg2 to seg1 :%@",notification.object);
-    NSLog(@"info is %@", notification.userInfo);
-    NSString *deleteItem = (NSString*)notification.userInfo[@"title"];
+    id deleteItem = (NSString*)notification.userInfo[@"title"];
     [self.itemArrary removeObject:deleteItem];
     [self.productsTableView reloadData];
 }
 
 - (void)addItemAction:(NSNotification *)notification {
-    NSLog(@"seg2 to seg1 :%@",notification.object);
-    NSLog(@"info is %@", notification.userInfo);
-    NSString *addItem = (NSString*)notification.userInfo[@"title"];
+    id addItem = (NSString*)notification.userInfo[@"title"];
     [self.itemArrary addObject:addItem];
     [self.productsTableView reloadData];
 }
@@ -114,9 +111,10 @@ typedef NS_ENUM(NSUInteger, XWDragCellCollectionViewScrollDirection) {
     if (!cell)
     {
         cell = [[ProductTVCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.delegate = self;
     }
-    cell.delegate = self;
     
+    [cell generateData:self.itemArrary[indexPath.row]];
     return cell;
 }
 
@@ -124,14 +122,14 @@ typedef NS_ENUM(NSUInteger, XWDragCellCollectionViewScrollDirection) {
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 120;
+    return 60*self.itemArrary.count;
 }
 
 #pragma mark - CustomerDelegate
 - (void)didDelete:(UITableViewCell *)cell{
     NSIndexPath *indexPath = [self.productsTableView indexPathForCell:cell];
     
-    NSString *item = self.itemArrary[indexPath.row];
+    id item = self.itemArrary[indexPath.row];
     NSDictionary *info = @{@"title":item};
     [[NSNotificationCenter defaultCenter] postNotificationName:kDeleteMoreProductNotification object:self userInfo:info];
     
@@ -139,6 +137,7 @@ typedef NS_ENUM(NSUInteger, XWDragCellCollectionViewScrollDirection) {
     self.resetGesture = YES;
     
     cell.maskView.hidden = YES;
+    // 更新数据源
     [self.productsTableView reloadData];
 }
 
@@ -282,6 +281,7 @@ typedef NS_ENUM(NSUInteger, XWDragCellCollectionViewScrollDirection) {
                 
                 // ... move the rows.
                 [self.productsTableView moveRowAtIndexPath:sourceIndexPath toIndexPath:indexPath];
+                [self.productsTableView reloadData];
                 
                 // ... and update source so it is in sync with UI changes.
                 sourceIndexPath = indexPath;

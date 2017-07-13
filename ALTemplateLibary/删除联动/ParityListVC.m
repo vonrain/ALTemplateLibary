@@ -10,6 +10,9 @@
 #import "MoreProductVC.h"
 #import "ProductsListVC.h"
 
+NSString *const kParityListVCProductName = @"kParityListVCProductName";
+NSString *const kParityListVCShopName = @"kParityListVCShopName";
+
 @interface ParityListVC ()
 
 @property (nonatomic, strong) MoreProductVC *moreProductVC;
@@ -59,15 +62,27 @@
 
 -(void)generateData:(id)data {
     
-    NSMutableArray *itemArrary = [NSMutableArray new];
-    for (int i =1 ; i < 8; i++) {
-        NSString *item = [NSString stringWithFormat:@"华为p%d",i];
-        [itemArrary addObject:item];
-    }
+//    NSMutableArray *itemArrary = [NSMutableArray new];
+//    for (int i = 0; i < 8; i++) {
+//        NSString *item = [NSString stringWithFormat:@"华为p%d",i];
+//        NSMutableArray *shopItems = [NSMutableArray new];
+//        for (int j = 0; j<i+1; j++) {
+//            NSString *shop = [NSString stringWithFormat:@"迈腾通讯%d",j];
+//            [shopItems addObject:shop];
+//        }
+//        
+//        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
+//                             item,kParityListVCProductName,
+//                             shopItems,kParityListVCShopName,
+//                             nil];
+//        
+//        [itemArrary addObject:dic];
+//    }
     
+    NSMutableArray *itemArrary = [ALHelper getJsonDataJsonname:@"删除联动.json"];
     [self.productsListVC generateData:itemArrary];
     [self.moreProductVC generateData:itemArrary];
-//    self.collectionCellItemArrary = [collectionCellArrary mutableCopy];
+ 
 }
 
 
@@ -91,7 +106,6 @@
     if (_productsListVC == nil) {
         _productsListVC = [[ProductsListVC alloc] init];
         [self addChildViewController:_productsListVC];
-        [_productsListVC generateData:nil];
     }
     return _productsListVC;
 }

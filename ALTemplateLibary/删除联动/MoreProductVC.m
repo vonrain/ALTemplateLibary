@@ -65,7 +65,7 @@
 - (void)deleteAction:(NSNotification *)notification {
     NSLog(@"seg2 to seg1 :%@",notification.object);
     NSLog(@"info is %@", notification.userInfo);
-    NSString *item = (NSString *)notification.userInfo[@"title"];
+    id item = notification.userInfo[@"title"];
     [self.collectionCellItemArrary removeObject:item];
     [self.collectionView reloadData];
     
@@ -87,10 +87,21 @@
     
     static int i = 3;
     NSString *item = [NSString stringWithFormat:@"iPhone %d",i++];
-    [self.collectionCellItemArrary addObject:item];
+    NSMutableArray *shopItems = [NSMutableArray new];
+    for (int j = 0; j<i+1; j++) {
+        NSString *shop = [NSString stringWithFormat:@"苹果%d",j];
+        [shopItems addObject:shop];
+    }
+    
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
+                         item,kParityListVCProductName,
+                         shopItems,kParityListVCShopName,
+                         nil];
+    
+    [self.collectionCellItemArrary addObject:dic];
     [self.collectionView reloadData];
     
-    NSDictionary *info = @{@"title":item};
+    NSDictionary *info = @{@"title":dic};
     [[NSNotificationCenter defaultCenter] postNotificationName:kAddProductNotification object:self userInfo:info];
 }
 

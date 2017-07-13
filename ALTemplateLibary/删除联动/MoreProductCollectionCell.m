@@ -44,7 +44,7 @@
 
 -(void)generateData:(id)data {
     
-    self.title.text = (NSString *)data;
+    self.title.text = ((NSMutableDictionary *)data)[kParityListVCProductName];
     
 }
 

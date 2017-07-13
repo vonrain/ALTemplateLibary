@@ -7,12 +7,19 @@
 //
 
 #import "ProductTVCell.h"
+#import "ProductItemCell.h"
+#import "ProductHeadView.h"
 
-@interface ProductTVCell ()<UITableViewDelegate,UITableViewDataSource>
+@interface ProductTVCell ()<UITableViewDelegate,UITableViewDataSource,ProductItemCellDelegate>
 @property (nonatomic, strong) UIView *detialView;
 @property (nonatomic, strong) UITableView *productTableView;
 @property (nonatomic, strong) UIView *maskView;
+@property (nonatomic, strong) ProductHeadView *headView;
+@property (nonatomic, strong) UIView *footView;
+@property (nonatomic, strong) UIButton *moreBtn;
 @property (nonatomic, strong) UIButton *deleteBtn;
+@property (nonatomic, strong) NSMutableArray *itemsArrary;
+@property (nonatomic, strong) NSString *productName;
 @end
 
 @implementation ProductTVCell
@@ -21,7 +28,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        [self layoutPageView];
+//        [self layoutPageView];
     }
     return self;
 }
@@ -30,20 +37,23 @@
     
     [self.contentView addSubview:self.detialView];
     [self.contentView addSubview:self.maskView];
+    
+    [self.detialView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self.detialView addSubview:self.productTableView];
     
+    UIEdgeInsets padding = UIEdgeInsetsMake(10, 10, 10, 10);
     [self.detialView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(self.contentView);
+        make.edges.mas_equalTo(self.contentView).insets(padding);
     }];
     
     [self.productTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(self.contentView);
+        make.edges.mas_equalTo(self.detialView);
     }];
 }
 
 - (void)layoutDetialView {
     
-    [self.detialView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+//    [self.detialView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
 }
 
@@ -54,8 +64,16 @@
 
 - (void)generateData:(id)data {
     
-    NSDictionary *dic = (NSDictionary *)data;
-    [self layoutDetialView];
+    NSMutableDictionary *dic = (NSMutableDictionary *)data;
+    
+    self.productName = dic[kParityListVCProductName];
+//    self.itemsArrary = [dic[kParityListVCShopName] mutableCopy];
+    self.itemsArrary = dic[kParityListVCShopName];
+    
+    [self.headView generateData:self.productName];
+    
+    [self.productTableView reloadData];
+    [self layoutPageView];
 }
 
 #pragma mark -
@@ -93,20 +111,22 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 6;
+    return self.itemsArrary.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"CustomerCellIdentifier";
     
-    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    ProductItemCell *cell = (ProductItemCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (!cell)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[ProductItemCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.delegate = self;
     }
     
+    [cell generateData:self.itemsArrary[indexPath.row]];
     return cell;
 }
 
@@ -114,17 +134,29 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 30;
+    return 40;
 }
 
 -(void)addTarget:(id)target action:(SEL)action {
     //    [self.rightButton addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
 }
+#pragma mark - ProductItemCellDelegate
 
+-(void)toTop:(UITableViewCell*)cell {
+    
+    NSIndexPath *indexPath = [self.productTableView indexPathForCell:cell];
+    id item = self.itemsArrary[indexPath.row];
+    [self.itemsArrary removeObjectAtIndex:indexPath.row];
+    [self.itemsArrary insertObject:item atIndex:0];
+    
+    [self.productTableView reloadData];
+}
+
+#pragma mark - Getter && Setter
 - (UIView *)detialView {
 	if (_detialView == nil) {
         _detialView = [[UIView alloc] init];
-        _detialView.backgroundColor=[UIColor blueColor];
+        _detialView.backgroundColor=[UIColor clearColor];
         _detialView.layer.borderColor=[UIColor grayColor].CGColor;
         _detialView.layer.borderWidth=0.5;
         _detialView.layer.cornerRadius=10;
@@ -138,6 +170,9 @@
         _productTableView.delegate = self;
         _productTableView.dataSource = self;
         _productTableView.scrollEnabled = NO;
+        _productTableView.tableHeaderView = self.headView;
+        _productTableView.tableFooterView = self.footView;
+        
 	}
 	return _productTableView;
 }
@@ -154,7 +189,7 @@
         UITapGestureRecognizer *tapGesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(event:)];
         [_maskView addGestureRecognizer:tapGesture];
         
-        UIButton *clearBtn= [[UIButton alloc] initWithFrame:CGRectMake(40,60 , 40, 40)];
+        UIButton *clearBtn= [[UIButton alloc] initWithFrame:CGRectMake(160, 60, 40, 40)];
         [clearBtn addTarget:self action:@selector(delCell:) forControlEvents:UIControlEventTouchUpInside];
         clearBtn.backgroundColor = [UIColor blueColor];
         [_maskView addSubview:clearBtn];
@@ -164,4 +199,34 @@
     return _maskView;
 }
 
+
+- (NSMutableArray *)itemsArrary {
+	if (_itemsArrary == nil) {
+        _itemsArrary = [[NSMutableArray alloc] init];
+	}
+	return _itemsArrary;
+}
+
+
+- (ProductHeadView *)headView {
+	if (_headView == nil) {
+        _headView = [[ProductHeadView alloc] initWithFrame:CGRectMake(0, 0, MainWidth-20, 60)];
+	}
+	return _headView;
+}
+- (UIView *)footView {
+	if (_footView == nil) {
+        _footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MainWidth-20, 20)];
+        [_footView addSubview:self.moreBtn];
+        _footView.backgroundColor = [UIColor yellowColor];
+        
+	}
+	return _footView;
+}
+- (UIButton *)moreBtn {
+	if (_moreBtn == nil) {
+        _moreBtn = [[UIButton alloc] init];
+	}
+	return _moreBtn;
+}
 @end
