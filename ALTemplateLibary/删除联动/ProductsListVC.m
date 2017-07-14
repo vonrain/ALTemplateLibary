@@ -122,7 +122,12 @@ typedef NS_ENUM(NSUInteger, XWDragCellCollectionViewScrollDirection) {
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60*self.itemArrary.count;
+    NSDictionary *dic = self.itemArrary[indexPath.row];
+    NSInteger count = [dic[kParityListVCItemCount] integerValue];
+    
+    CGFloat height = 130.f +40.f *count;
+//    MyLog(@"%f",height);
+    return  height;
 }
 
 #pragma mark - CustomerDelegate

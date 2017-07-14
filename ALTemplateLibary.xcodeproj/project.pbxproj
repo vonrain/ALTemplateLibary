@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		B01747E1A55D88C22AE6C0C9 /* libPods-ALTemplateLibary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FE87592BDE27C5FB9F1CFC9 /* libPods-ALTemplateLibary.a */; };
 		C7145A321F0F1588007DEE24 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7145A311F0F1588007DEE24 /* Default-568h@2x.png */; };
+		C72EB5DE1F185B3E0069AB83 /* ProductHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = C72EB5DB1F185B3E0069AB83 /* ProductHeadView.m */; };
+		C72EB5DF1F185B3E0069AB83 /* ProductItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C72EB5DD1F185B3E0069AB83 /* ProductItemCell.m */; };
+		C72EB5E21F185B850069AB83 /* 删除联动.json in Resources */ = {isa = PBXBuildFile; fileRef = C72EB5E11F185B850069AB83 /* 删除联动.json */; };
 		C787A4581F0E37F4006E2D0A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C787A4571F0E37F4006E2D0A /* main.m */; };
 		C787A45B1F0E37F4006E2D0A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C787A45A1F0E37F4006E2D0A /* AppDelegate.m */; };
 		C787A45E1F0E37F4006E2D0A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C787A45D1F0E37F4006E2D0A /* ViewController.m */; };
@@ -20,6 +23,7 @@
 		C787A4A01F0E3FC4006E2D0A /* DragVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C787A4981F0E3FC4006E2D0A /* DragVC.m */; };
 		C787A4A11F0E3FC4006E2D0A /* DragUITableViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C787A49B1F0E3FC4006E2D0A /* DragUITableViewVC.m */; };
 		C787A4A21F0E3FC4006E2D0A /* TableViewColumnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C787A49D1F0E3FC4006E2D0A /* TableViewColumnCell.m */; };
+		C7959A1A1F185931003D3519 /* ALHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C7959A191F185931003D3519 /* ALHelper.m */; };
 		C7F4D4141F0F31B00056561A /* ParityListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F4D4131F0F31B00056561A /* ParityListVC.m */; };
 		C7F4D4171F0F68010056561A /* MoreProductsView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F4D4161F0F68010056561A /* MoreProductsView.m */; };
 		C7F4D41A1F131A060056561A /* MoreProductVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F4D4191F131A060056561A /* MoreProductVC.m */; };
@@ -50,6 +54,11 @@
 		287D0D346BA9E86144518726 /* Pods-ALTemplateLibary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ALTemplateLibary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ALTemplateLibary/Pods-ALTemplateLibary.debug.xcconfig"; sourceTree = "<group>"; };
 		7EFA7A21188F78583951F4BA /* Pods-ALTemplateLibary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ALTemplateLibary.release.xcconfig"; path = "Pods/Target Support Files/Pods-ALTemplateLibary/Pods-ALTemplateLibary.release.xcconfig"; sourceTree = "<group>"; };
 		C7145A311F0F1588007DEE24 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		C72EB5DA1F185B3E0069AB83 /* ProductHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductHeadView.h; sourceTree = "<group>"; };
+		C72EB5DB1F185B3E0069AB83 /* ProductHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductHeadView.m; sourceTree = "<group>"; };
+		C72EB5DC1F185B3E0069AB83 /* ProductItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductItemCell.h; sourceTree = "<group>"; };
+		C72EB5DD1F185B3E0069AB83 /* ProductItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductItemCell.m; sourceTree = "<group>"; };
+		C72EB5E11F185B850069AB83 /* 删除联动.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "删除联动.json"; sourceTree = "<group>"; };
 		C787A4531F0E37F4006E2D0A /* ALTemplateLibary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ALTemplateLibary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C787A4571F0E37F4006E2D0A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C787A4591F0E37F4006E2D0A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -75,6 +84,8 @@
 		C787A49C1F0E3FC4006E2D0A /* TableViewColumnCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewColumnCell.h; sourceTree = "<group>"; };
 		C787A49D1F0E3FC4006E2D0A /* TableViewColumnCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewColumnCell.m; sourceTree = "<group>"; };
 		C787A4A31F0F1089006E2D0A /* ALTemplateLibary-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ALTemplateLibary-Prefix.pch"; sourceTree = "<group>"; };
+		C7959A181F185931003D3519 /* ALHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALHelper.h; sourceTree = "<group>"; };
+		C7959A191F185931003D3519 /* ALHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALHelper.m; sourceTree = "<group>"; };
 		C7F4D4121F0F31B00056561A /* ParityListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParityListVC.h; sourceTree = "<group>"; };
 		C7F4D4131F0F31B00056561A /* ParityListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParityListVC.m; sourceTree = "<group>"; };
 		C7F4D4151F0F68010056561A /* MoreProductsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreProductsView.h; sourceTree = "<group>"; };
@@ -132,6 +143,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C72EB5E01F185B850069AB83 /* StaticData */ = {
+			isa = PBXGroup;
+			children = (
+				C72EB5E11F185B850069AB83 /* 删除联动.json */,
+			);
+			path = StaticData;
+			sourceTree = "<group>";
+		};
 		C787A44A1F0E37F4006E2D0A = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +181,7 @@
 				C787A45A1F0E37F4006E2D0A /* AppDelegate.m */,
 				C787A45C1F0E37F4006E2D0A /* ViewController.h */,
 				C787A45D1F0E37F4006E2D0A /* ViewController.m */,
+				C7959A171F185931003D3519 /* 工具 */,
 				C787A4901F0E3FC4006E2D0A /* Collection横向Tableview单元格 */,
 				C787A4991F0E3FC4006E2D0A /* tableview横向tableview单元格 */,
 				C7F4D4111F0F30A40056561A /* 删除联动 */,
@@ -175,6 +195,7 @@
 		C787A4561F0E37F4006E2D0A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C72EB5E01F185B850069AB83 /* StaticData */,
 				C787A4A31F0F1089006E2D0A /* ALTemplateLibary-Prefix.pch */,
 				C787A4571F0E37F4006E2D0A /* main.m */,
 			);
@@ -239,6 +260,15 @@
 			path = "tableview横向tableview单元格";
 			sourceTree = "<group>";
 		};
+		C7959A171F185931003D3519 /* 工具 */ = {
+			isa = PBXGroup;
+			children = (
+				C7959A181F185931003D3519 /* ALHelper.h */,
+				C7959A191F185931003D3519 /* ALHelper.m */,
+			);
+			path = "工具";
+			sourceTree = "<group>";
+		};
 		C7F4D4111F0F30A40056561A /* 删除联动 */ = {
 			isa = PBXGroup;
 			children = (
@@ -252,6 +282,10 @@
 				C7F4D41C1F131A5E0056561A /* ProductsListVC.m */,
 				C7F4D4211F137D1F0056561A /* ProductTVCell.h */,
 				C7F4D4221F137D1F0056561A /* ProductTVCell.m */,
+				C72EB5DA1F185B3E0069AB83 /* ProductHeadView.h */,
+				C72EB5DB1F185B3E0069AB83 /* ProductHeadView.m */,
+				C72EB5DC1F185B3E0069AB83 /* ProductItemCell.h */,
+				C72EB5DD1F185B3E0069AB83 /* ProductItemCell.m */,
 				C7F4D4151F0F68010056561A /* MoreProductsView.h */,
 				C7F4D4161F0F68010056561A /* MoreProductsView.m */,
 			);
@@ -365,6 +399,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C787A4631F0E37F4006E2D0A /* Assets.xcassets in Resources */,
+				C72EB5E21F185B850069AB83 /* 删除联动.json in Resources */,
 				C7145A321F0F1588007DEE24 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,14 +479,17 @@
 				C787A4A01F0E3FC4006E2D0A /* DragVC.m in Sources */,
 				C7F4D41D1F131A5E0056561A /* ProductsListVC.m in Sources */,
 				C787A45E1F0E37F4006E2D0A /* ViewController.m in Sources */,
+				C72EB5DF1F185B3E0069AB83 /* ProductItemCell.m in Sources */,
 				C7F4D41A1F131A060056561A /* MoreProductVC.m in Sources */,
 				C787A49F1F0E3FC4006E2D0A /* LongPressChangeVC.m in Sources */,
 				C7F4D4141F0F31B00056561A /* ParityListVC.m in Sources */,
 				C7F4D4231F137D1F0056561A /* ProductTVCell.m in Sources */,
+				C72EB5DE1F185B3E0069AB83 /* ProductHeadView.m in Sources */,
 				C787A49E1F0E3FC4006E2D0A /* ColumnCell.m in Sources */,
 				C7F4D4201F13611F0056561A /* MoreProductCollectionCell.m in Sources */,
 				C787A45B1F0E37F4006E2D0A /* AppDelegate.m in Sources */,
 				C787A4581F0E37F4006E2D0A /* main.m in Sources */,
+				C7959A1A1F185931003D3519 /* ALHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

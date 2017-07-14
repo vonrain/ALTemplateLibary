@@ -25,5 +25,13 @@
 
 extern NSString *const kParityListVCProductName;
 extern NSString *const kParityListVCShopName;
+extern NSString *const kParityListVCItemCount;
+
+#ifdef DEBUG
+#define MyLog(...) NSLog(__VA_ARGS__);
+#else
+#define MyLog(...)
+#endif
+
 
 #endif /* ALTemplateLibary_Prefix_pch */
