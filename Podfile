@@ -10,4 +10,8 @@ pod 'YYModel','~> 1.0.4'
 
 pod 'YYText','~> 1.0.7'
 
+pod 'UITableView+FDTemplateLayoutCell'
+
+
+
 end

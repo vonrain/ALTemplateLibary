@@ -11,6 +11,7 @@
 #import "DragVC.h"
 #import "DragUITableViewVC.h"
 #import "ParityListVC.h"
+#import "ShopPricListVC.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -48,11 +49,15 @@
     [parityListVC generateData:nil];
     parityListVC.title = @"删除联动";
     
+    ShopPricListVC *shopPriceVC = [[ShopPricListVC alloc] init];
+    shopPriceVC.title = @"店铺比价单";
+    
     self.controllers = @[
                          longPressChangVC,
                          dragVC,
                          dragUITableViewVC,
-                         parityListVC
+                         parityListVC,
+                         shopPriceVC
                          ];
 }
 
