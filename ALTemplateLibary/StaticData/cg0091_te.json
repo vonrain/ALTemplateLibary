@@ -131,7 +131,35 @@
 						    ],
 						    "activityList" : [
 						    ]
+					    },
+					    {
+						    "skuId" : "1254961",
+							"gdsName" : "iPhone8",
+							"titleExt" : "hhhh",
+					      	"brandId" : "123",
+					      	"brandName" : "苹果",
+							"modelName" : "型号",
+							"spuType" : "型号id",
+							"systemStandard" : "制式",
+							"memory" : "内存",
+							"skuColor" : "单品颜色",
+							"gdsPrice" : "单品价格",
+							"gdsName" : "iPhone8",
+							"gdsName" : "iPhone8",
+						    "contractPrice" : 0,
+						    "price" : 45000,
+						    "stock" : 800,
+						    "isCustomerPrice" : "0",
+						    "shopPriceType" : null,
+						    "appReduce" : 0,
+						    "guidePrice" : 59900,
+						    "skuInfoList" : [
+						    
+						    ],
+						    "activityList" : [
+						    ]
 					    }
+
 				    ],
 				    "activityList" : [
 				    	{

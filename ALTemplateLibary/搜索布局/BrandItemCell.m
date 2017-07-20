@@ -7,6 +7,7 @@
 //
 
 #import "BrandItemCell.h"
+#import "YYText.h"
 
 @interface BrandItemCell ()
 
@@ -49,15 +50,16 @@
     [self.detialView addSubview:self.rightLine];
     
     UIEdgeInsets padding = UIEdgeInsetsMake(1, 0, 1, 0);
+    CGFloat spacing = 5;
     [self.detialView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self.contentView).insets(padding);
     }];
     
     [self.productsModelLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.detialView);
-        make.left.mas_equalTo(self.detialView);
+        make.left.mas_equalTo(self.detialView).offset(spacing);
         make.bottom.mas_equalTo(self.detialView);
-        make.width.mas_equalTo(kProductsModelLabelWidth);
+        make.width.mas_equalTo(kProductsModelLabelWidth-spacing);
     }];
     
     [self.productsModelBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -65,14 +67,14 @@
     }];
     
     [self.leftLine mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(1);
+        make.width.mas_equalTo(2);
         make.top.mas_equalTo(self.productsModelLabel).offset(4);
         make.bottom.mas_equalTo(self.productsModelLabel).offset(-4);
         make.left.mas_equalTo(self.productsModelLabel.mas_right);
     }];
     
     [self.colorPriceLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.productsModelLabel.mas_right);
+        make.left.mas_equalTo(self.leftLine.mas_right).offset(spacing);
         make.top.mas_equalTo(self.detialView);
         make.bottom.mas_equalTo(self.detialView);
         make.width.mas_equalTo(MainWidth-2*kProductsModelLabelWidth-20);
@@ -86,9 +88,10 @@
     }];
     
     [self.activityView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.right.mas_equalTo(self.detialView);
+        make.top.mas_equalTo(self.detialView);
+        make.right.mas_equalTo(self.detialView).offset(-spacing);
         make.bottom.mas_equalTo(self.detialView);
-        make.left.mas_equalTo(self.colorPriceLabel.mas_right);
+        make.left.mas_equalTo(self.colorPriceLabel.mas_right).offset(spacing);
     }];
     
     CGFloat pointY = 2;
@@ -96,7 +99,7 @@
         NSDictionary *activeItemDic = self.activeArr[i];
         UIButton *btn = [[UIButton alloc] init];
         btn.backgroundColor = [UIColor yellowColor];
-        btn.titleLabel.font = [UIFont systemFontOfSize:11];
+        btn.titleLabel.font = [UIFont systemFontOfSize:9];
         [self.activityView addSubview:btn];
         
         [btn mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -123,6 +126,7 @@
     self.productsModelLabel.text = [NSString stringWithFormat:@"%@/%@/%@",dic[@"modelName"],dic[@"systemStandard"],dic[@"memory"]];
     NSArray *arr = dic[@"skuInfoList"];
     
+    // 颜色价格
     NSMutableString *str = [NSMutableString new];
     for (NSDictionary *item in arr) {
         [str appendFormat:@"%@ (%@)",item[@"skuColor"],item[@"gdsPrice"]];
@@ -181,7 +185,7 @@
 	if (_productsModelLabel == nil) {
         _productsModelLabel = [[UILabel alloc] init];
         _productsModelLabel.backgroundColor = [UIColor whiteColor];
-        _productsModelLabel.font = [UIFont systemFontOfSize:11];
+        _productsModelLabel.font = [UIFont systemFontOfSize:9];
 	}
 	return _productsModelLabel;
 }
@@ -202,7 +206,7 @@
         _colorPriceLabel.numberOfLines = 0;
         _colorPriceLabel.preferredMaxLayoutWidth = (MainWidth-2*kProductsModelLabelWidth-20);
         _colorPriceLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        _colorPriceLabel.font = [UIFont systemFontOfSize:11];
+        _colorPriceLabel.font = [UIFont systemFontOfSize:9];
 	}
 	return _colorPriceLabel;
 }
