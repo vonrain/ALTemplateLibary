@@ -12,12 +12,14 @@
 
 @property (nonatomic, strong) UIView *detialView;
 @property (nonatomic, strong) UILabel *productsModelLabel;
+@property (nonatomic, strong) UIButton *productsModelBtn;
 @property (nonatomic, strong) UILabel *colorPriceLabel;
 @property (nonatomic, strong) UIView *activityView;
 @property (nonatomic, strong) UIView *leftLine;
 @property (nonatomic, strong) UIView *rightLine;
 @property (nonatomic, strong) NSArray *itemsArr;
 @property (nonatomic, strong) NSArray *activeArr;
+@property (nonatomic, strong) NSDictionary *brandItemDic;
 
 @end
 
@@ -27,7 +29,7 @@
     
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.contentView.backgroundColor = [UIColor lightGrayColor];
+        self.contentView.backgroundColor = [ALHelper createColorByHex:@"#F2F3F7"];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;
@@ -40,6 +42,7 @@
     
     [self.contentView addSubview:self.detialView];
     [self.detialView addSubview:self.productsModelLabel];
+    [self.detialView addSubview:self.productsModelBtn];
     [self.detialView addSubview:self.colorPriceLabel];
     [self.detialView addSubview:self.activityView];
     [self.detialView addSubview:self.leftLine];
@@ -55,6 +58,10 @@
         make.left.mas_equalTo(self.detialView);
         make.bottom.mas_equalTo(self.detialView);
         make.width.mas_equalTo(kProductsModelLabelWidth);
+    }];
+    
+    [self.productsModelBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(self.productsModelLabel);
     }];
     
     [self.leftLine mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -84,17 +91,18 @@
         make.left.mas_equalTo(self.colorPriceLabel.mas_right);
     }];
     
-    CGFloat pointY = 0;
-//    for (NSDictionary *activeItemDic in self.activeArr) {
+    CGFloat pointY = 2;
     for (int i = 0; i < self.activeArr.count; i++) {
         NSDictionary *activeItemDic = self.activeArr[i];
         UIButton *btn = [[UIButton alloc] init];
         btn.backgroundColor = [UIColor yellowColor];
+        btn.titleLabel.font = [UIFont systemFontOfSize:11];
         [self.activityView addSubview:btn];
         
         [btn mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.mas_equalTo(self.activityView);
-            make.height.mas_equalTo(20);
+            make.left.mas_equalTo(self.activityView).offset(2);
+            make.right.mas_equalTo(self.activityView).offset(-2);
+            make.height.mas_equalTo(18);
             make.top.mas_equalTo(self.activityView).offset(pointY);
         }];
         
@@ -110,6 +118,7 @@
 - (void)generateData:(id)data {
     
     NSDictionary *dic = (NSDictionary*)data;
+    self.brandItemDic = dic;
     
     self.productsModelLabel.text = [NSString stringWithFormat:@"%@/%@/%@",dic[@"modelName"],dic[@"systemStandard"],dic[@"memory"]];
     NSArray *arr = dic[@"skuInfoList"];
@@ -122,7 +131,6 @@
     NSString *colorPriceString = [str copy];
     self.colorPriceLabel.text = colorPriceString;
     self.activeArr = dic[@"activityList"];
-//    self.colorPriceLabel.text = @"杨发送到发送到服务百八十的发送到发送到发鞍山地区阿斯顿发送到发送到哈社交恐惧；了；";
     [self layoutPageView];
     
 }
@@ -134,8 +142,17 @@
     NSDictionary *info = @{@"type":@"active",
                             @"param":dic
                             };
-    [[NSNotificationCenter defaultCenter] postNotificationName:kClickItemNotification object:self userInfo:info];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kShopPricListClickItemNotification object:self userInfo:info];
 }
+
+- (void)clickModelBtn:(UIButton *)sender {
+    NSDictionary *dic = self.brandItemDic;
+    NSDictionary *info = @{@"type":@"model",
+                            @"param":dic
+                            };
+    [[NSNotificationCenter defaultCenter] postNotificationName:kShopPricListClickItemNotification object:self userInfo:info];
+}
+
 
 - (CGFloat)activeHeight {
     
@@ -164,8 +181,19 @@
 	if (_productsModelLabel == nil) {
         _productsModelLabel = [[UILabel alloc] init];
         _productsModelLabel.backgroundColor = [UIColor whiteColor];
+        _productsModelLabel.font = [UIFont systemFontOfSize:11];
 	}
 	return _productsModelLabel;
+}
+
+
+- (UIButton *)productsModelBtn {
+	if (_productsModelBtn == nil) {
+        _productsModelBtn = [[UIButton alloc] init];
+//        _productsModelBtn.backgroundColor = [UIColor clearColor];
+        [_productsModelBtn addTarget:self action:@selector(clickModelBtn:) forControlEvents:UIControlEventTouchUpInside];
+	}
+	return _productsModelBtn;
 }
 - (UILabel *)colorPriceLabel {
 	if (_colorPriceLabel == nil) {
@@ -174,6 +202,7 @@
         _colorPriceLabel.numberOfLines = 0;
         _colorPriceLabel.preferredMaxLayoutWidth = (MainWidth-2*kProductsModelLabelWidth-20);
         _colorPriceLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        _colorPriceLabel.font = [UIFont systemFontOfSize:11];
 	}
 	return _colorPriceLabel;
 }
@@ -182,14 +211,14 @@
 - (UIView *)leftLine {
 	if (_leftLine == nil) {
         _leftLine = [[UIView alloc] init];
-        _leftLine.backgroundColor = [UIColor lightGrayColor];
+        _leftLine.backgroundColor = [ALHelper createColorByHex:@"#F2F3F7"];
 	}
 	return _leftLine;
 }
 - (UIView *)rightLine {
 	if (_rightLine == nil) {
         _rightLine = [[UIView alloc] init];
-        _rightLine.backgroundColor = [UIColor lightGrayColor];
+        _rightLine.backgroundColor = [ALHelper createColorByHex:@"#F2F3F7"];
 	}
 	return _rightLine;
 }

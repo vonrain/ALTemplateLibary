@@ -33,7 +33,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        self.contentView.backgroundColor = [UIColor lightGrayColor];
+        self.contentView.backgroundColor = [ALHelper createColorByHex:@"#F2F3F7"];
         [self.productTableView registerClass:[BrandItemCell class] forCellReuseIdentifier:CellIdentifier];
     }
     return self;
@@ -45,7 +45,7 @@
     [self.detialView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self.detialView addSubview:self.productTableView];
     
-    UIEdgeInsets padding = UIEdgeInsetsMake(10, 10, 10, 10);
+    UIEdgeInsets padding = UIEdgeInsetsMake(0, 10, 10, 10);
     [self.detialView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self.contentView).insets(padding);
     }];

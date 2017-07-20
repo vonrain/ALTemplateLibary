@@ -11,4 +11,6 @@
 @interface ALHelper : NSObject
 // 从文件中读取json数据
 + (id)getJsonDataJsonname:(NSString *)jsonname;
+
++ (UIColor*) createColorByHex:(NSString *)hexColor;
 @end

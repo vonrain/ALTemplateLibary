@@ -11,6 +11,7 @@
 #import "BrandPriceListCell.h"
 #import "UITableView+FDTemplateLayoutCell.h"
 #import "DragVC.h"
+#import "LongPressChangeVC.h"
 
 @interface ShopPricListVC ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,UISearchDisplayDelegate>
 
@@ -18,6 +19,7 @@
 /**数据源*/
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) NSMutableArray *searchResultArray;
+@property (nonatomic, strong) UISearchBar *searchBar;
 @property (nonatomic, strong) UISearchDisplayController *displayer;
 @property (nonatomic, strong) HeadTipsView *headTipsView;
 
@@ -47,7 +49,7 @@
     self.extendedLayoutIncludesOpaqueBars = NO;
     self.modalPresentationCapturesStatusBarAppearance = NO;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpAction:) name:kClickItemNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpAction:) name:kShopPricListClickItemNotification object:nil];
     self.title = @"店铺比价单";
     
     [self generateData:nil];
@@ -61,7 +63,7 @@
 - (void)layoutPageView {
     [self.view addSubview:self.headTipsView];
     [self.view addSubview:self.tableView];
-    [self setupSearchBar];
+    self.tableView.tableHeaderView = self.searchBar;
     
     [self.headTipsView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(MainWidth, 36));
@@ -74,52 +76,36 @@
     }];
     
 }
-- (void)setupSearchBar{
-    /**配置Search相关控件*/
-    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
-    self.tableView.tableHeaderView = searchBar;
-    
-    self.displayer = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
-    /**searchBar的delegate看需求进行配置*/
-    searchBar.delegate = self;
-    
-    /**以下都比较重要，建议都设置好代理*/
-    self.displayer.searchResultsDataSource = self;
-    self.displayer.searchResultsDelegate = self;
-    self.displayer.delegate = self;
-}
 
 -(void)generateData:(id)data {
     
     NSDictionary *dic = [ALHelper getJsonDataJsonname:@"cg0091_te.json"];
     self.dataArray = dic[@"brandResult"];
+    
 //    self.dataArray = [self getDataArray];
 }
 
 #pragma mark - EventRespone
 #pragma mark - Notification
 - (void)jumpAction:(NSNotification *)notification {
-    NSLog(@"seg2 to seg1 :%@",notification.object);
-    NSLog(@"info is %@", notification.userInfo);
+//    NSLog(@"seg2 to seg1 :%@",notification.object);
+//    NSLog(@"info is %@", notification.userInfo);
     NSString *type = notification.userInfo[@"type"];
     NSDictionary *paramDic = notification.userInfo[@"param"];
     
     if ([type isEqualToString:@"active"]) {
-        MyLog(@"jump to ");
-        
+        MyLog(@"jump to %@",paramDic);
         DragVC *dragVC = [[DragVC alloc] init];
         [self.navigationController pushViewController:dragVC animated:YES];
     }
-    
-    //    [seg2DeSelectedArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-    //        BOOL isContain = [self.dataArray containsObject:obj];
-    //        if (isContain == YES) {
-    //            return ;
-    //        } else {
-    //            [self.dataArray addObjectsFromArray:seg2DeSelectedArray];
-    //            [self.collectionView reloadData];
-    //        }
-    //    }];
+    else if ([type isEqualToString:@"model"]){
+        
+        MyLog(@"jump to %@",paramDic);
+        LongPressChangeVC *longPressChangVC = [[LongPressChangeVC alloc] init];
+        [longPressChangVC generateData:nil];
+        longPressChangVC.title = @"长按删除及移动";
+        [self.navigationController pushViewController:longPressChangVC animated:YES];
+    }
 }
 
 #pragma mark - Table view data source
@@ -147,7 +133,7 @@
     }
     /**对TableView进行判断，如果是搜索结果展示视图，返回不同数据源*/
     if (tableView == self.displayer.searchResultsTableView) {
-        cell.textLabel.text = [NSString stringWithFormat:@"%@",self.searchResultArray[indexPath.row]];
+        [cell generateData:self.searchResultArray[indexPath.row]];
     }
     else{
         
@@ -189,6 +175,10 @@
 -(BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
 {
     NSLog(@"end");
+//    [self.displayer.searchResultsTableView reloadData];
+    
+    self.searchResultArray = self.dataArray;
+    [self.displayer.searchResultsTableView reloadData];
     return  YES;
 }
 
@@ -198,13 +188,37 @@
 {
     
     /**通过谓词修饰的方式来查找包含我们搜索关键字的数据*/
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"self contains[cd] %@",searchString];
-    self.searchResultArray = [self.dataArray filteredArrayUsingPredicate:resultPredicate];
+//    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"self contains[cd] %@",searchString];
+//    self.searchResultArray = [self.dataArray filteredArrayUsingPredicate:resultPredicate];
+//    self.searchResultArray = self.dataArray;
+    
     return  YES;
 }
 
 #pragma mark - getter && setter
+- (UISearchBar *)searchBar {
+	if (_searchBar == nil) {
+        _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
+        _searchBar.delegate = self;
+        _searchBar.backgroundImage = [[UIImage alloc] init];
+//        _searchBar.barTintColor = [ALHelper createColorByHex:@"#F2F3F7"];
+        
+	}
+	return _searchBar;
+}
 
+- (UISearchDisplayController *)displayer {
+	if (_displayer == nil) {
+        _displayer = [[UISearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
+        
+        _displayer.searchResultsDataSource = self;
+        _displayer.searchResultsDelegate = self;
+        _displayer.delegate = self;
+        _displayer.searchResultsTableView.tableFooterView= [UIView new];//无数据时不显示cell
+        
+	}
+	return _displayer;
+}
 
 - (HeadTipsView *)headTipsView {
 	if (_headTipsView == nil) {
@@ -219,6 +233,7 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.backgroundColor = [ALHelper createColorByHex:@"#F2F3F7"];
     }
     return _tableView;
 }
