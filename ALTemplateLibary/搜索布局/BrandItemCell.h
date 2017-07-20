@@ -11,4 +11,6 @@
 @interface BrandItemCell : UITableViewCell
 
 - (void)generateData:(id)data;
+
+- (CGFloat)activeHeight ;
 @end

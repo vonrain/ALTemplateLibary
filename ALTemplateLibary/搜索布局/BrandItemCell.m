@@ -17,6 +17,7 @@
 @property (nonatomic, strong) UIView *leftLine;
 @property (nonatomic, strong) UIView *rightLine;
 @property (nonatomic, strong) NSArray *itemsArr;
+@property (nonatomic, strong) NSArray *activeArr;
 
 @end
 
@@ -33,6 +34,7 @@
 }
 
 - (void)layoutPageView {
+    [self.activityView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self.detialView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
@@ -82,16 +84,62 @@
         make.left.mas_equalTo(self.colorPriceLabel.mas_right);
     }];
     
+    CGFloat pointY = 0;
+//    for (NSDictionary *activeItemDic in self.activeArr) {
+    for (int i = 0; i < self.activeArr.count; i++) {
+        NSDictionary *activeItemDic = self.activeArr[i];
+        UIButton *btn = [[UIButton alloc] init];
+        btn.backgroundColor = [UIColor yellowColor];
+        [self.activityView addSubview:btn];
+        
+        [btn mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.mas_equalTo(self.activityView);
+            make.height.mas_equalTo(20);
+            make.top.mas_equalTo(self.activityView).offset(pointY);
+        }];
+        
+        pointY += 20;
+        [btn setTitle:activeItemDic[@"activityName"] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
+        btn.tag = 1000 + i;
+    }
+    
 }
 
 - (void)generateData:(id)data {
     
-    //    self.itemsArr = (NSArray*)data;
-    self.productsModelLabel.text = (NSString *)data;
+    NSDictionary *dic = (NSDictionary*)data;
+    
+    self.productsModelLabel.text = [NSString stringWithFormat:@"%@/%@/%@",dic[@"modelName"],dic[@"systemStandard"],dic[@"memory"]];
+    NSArray *arr = dic[@"skuInfoList"];
+    
+    NSMutableString *str = [NSMutableString new];
+    for (NSDictionary *item in arr) {
+        [str appendFormat:@"%@ (%@)",item[@"skuColor"],item[@"gdsPrice"]];
+    }
+    
+    NSString *colorPriceString = [str copy];
+    self.colorPriceLabel.text = colorPriceString;
+    self.activeArr = dic[@"activityList"];
 //    self.colorPriceLabel.text = @"杨发送到发送到服务百八十的发送到发送到发鞍山地区阿斯顿发送到发送到哈社交恐惧；了；";
-    self.colorPriceLabel.text = @"哈社交恐惧；了；";
     [self layoutPageView];
     
+}
+
+#pragma mark - EventResponse
+- (void)clickBtn:(UIButton *)sender {
+    long index = sender.tag -1000;
+    NSDictionary *dic = self.activeArr[index];
+    NSDictionary *info = @{@"type":@"active",
+                            @"param":dic
+                            };
+    [[NSNotificationCenter defaultCenter] postNotificationName:kClickItemNotification object:self userInfo:info];
+}
+
+- (CGFloat)activeHeight {
+    
+    return self.activeArr.count * 20;
 }
 
 #pragma mark - Getter && Setter

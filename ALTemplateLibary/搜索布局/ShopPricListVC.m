@@ -10,6 +10,7 @@
 #import "HeadTipsView.h"
 #import "BrandPriceListCell.h"
 #import "UITableView+FDTemplateLayoutCell.h"
+#import "DragVC.h"
 
 @interface ShopPricListVC ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,UISearchDisplayDelegate>
 
@@ -23,6 +24,10 @@
 @end
 
 @implementation ShopPricListVC
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 - (NSMutableArray *)getDataArray
 {
@@ -42,6 +47,7 @@
     self.extendedLayoutIncludesOpaqueBars = NO;
     self.modalPresentationCapturesStatusBarAppearance = NO;
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpAction:) name:kClickItemNotification object:nil];
     self.title = @"店铺比价单";
     
     [self generateData:nil];
@@ -84,8 +90,38 @@
 }
 
 -(void)generateData:(id)data {
-    self.dataArray = [self getDataArray];
+    
+    NSDictionary *dic = [ALHelper getJsonDataJsonname:@"cg0091_te.json"];
+    self.dataArray = dic[@"brandResult"];
+//    self.dataArray = [self getDataArray];
 }
+
+#pragma mark - EventRespone
+#pragma mark - Notification
+- (void)jumpAction:(NSNotification *)notification {
+    NSLog(@"seg2 to seg1 :%@",notification.object);
+    NSLog(@"info is %@", notification.userInfo);
+    NSString *type = notification.userInfo[@"type"];
+    NSDictionary *paramDic = notification.userInfo[@"param"];
+    
+    if ([type isEqualToString:@"active"]) {
+        MyLog(@"jump to ");
+        
+        DragVC *dragVC = [[DragVC alloc] init];
+        [self.navigationController pushViewController:dragVC animated:YES];
+    }
+    
+    //    [seg2DeSelectedArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    //        BOOL isContain = [self.dataArray containsObject:obj];
+    //        if (isContain == YES) {
+    //            return ;
+    //        } else {
+    //            [self.dataArray addObjectsFromArray:seg2DeSelectedArray];
+    //            [self.collectionView reloadData];
+    //        }
+    //    }];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -114,9 +150,8 @@
         cell.textLabel.text = [NSString stringWithFormat:@"%@",self.searchResultArray[indexPath.row]];
     }
     else{
-        cell.textLabel.text = [NSString stringWithFormat:@"%@",self.dataArray[indexPath.row]];
         
-        [cell generateData:nil];
+        [cell generateData:self.dataArray[indexPath.row]];
     }
     return cell;
 }

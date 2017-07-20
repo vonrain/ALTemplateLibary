@@ -1,0 +1,602 @@
+{
+	"queryType" : "0",
+    "brandResult" : [
+      {
+      	"brandId" : "123",
+      	"brandName" : "苹果",
+      	"modelResult" : [
+			      {
+				    "skuId" : "1254961",
+					"gdsName" : "iPhone8",
+					"titleExt" : "hhhh",
+			      	"brandId" : "123",
+			      	"brandName" : "苹果",
+					"modelName" : "型号",
+					"spuType" : "型号id",
+					"systemStandard" : "制式",
+					"memory" : "内存",
+					"skuColor" : "单品颜色",
+					"gdsPrice" : "单品价格",
+					"gdsName" : "iPhone8",
+					"gdsName" : "iPhone8",
+				    "contractPrice" : 0,
+				    "price" : 45000,
+				    "stock" : 800,
+				    "isCustomerPrice" : "0",
+				    "shopPriceType" : null,
+				    "appReduce" : 0,
+				    "guidePrice" : 59900,
+				    "skuInfoList" : [
+				    	{
+						    "skuId" : "1254961",
+							"gdsName" : "iPhone8",
+							"titleExt" : "hhhh",
+					      	"brandId" : "123",
+					      	"brandName" : "苹果",
+							"modelName" : "型号",
+							"spuType" : "型号id",
+							"systemStandard" : "制式",
+							"memory" : "内存",
+							"skuColor" : "单品颜色",
+							"gdsPrice" : "单品价格",
+							"gdsName" : "iPhone8",
+							"gdsName" : "iPhone8",
+						    "contractPrice" : 0,
+						    "price" : 45000,
+						    "stock" : 800,
+						    "isCustomerPrice" : "0",
+						    "shopPriceType" : null,
+						    "appReduce" : 0,
+						    "guidePrice" : 59900,
+						    "skuInfoList" : [
+						    
+						    ],
+						    "activityList" : [
+						    ]
+					    }
+				    ],
+				    "activityList" : [
+				    	{
+				    		"activityId" : "活动id",
+							"activityName" : "活动名称",
+							"skuId" : "单品ID",
+					      	"gdsId" : "商品ID",
+					      	"brandName" : "苹果",
+					      	"shopId" : "11123"
+				    	},
+				    	{
+				    		"activityId" : "活动id",
+							"activityName" : "活动名称",
+							"skuId" : "单品ID",
+					      	"gdsId" : "商品ID",
+					      	"brandName" : "苹果",
+					      	"shopId" : "11123"
+				    	},
+				    	{
+				    		"activityId" : "活动id",
+							"activityName" : "活动名称",
+							"skuId" : "单品ID",
+					      	"gdsId" : "商品ID",
+					      	"brandName" : "苹果",
+					      	"shopId" : "11123"
+				    	}
+				    ]
+
+		      	 },
+		      {
+				    "skuId" : "1254961",
+					"gdsName" : "iPhone8",
+					"titleExt" : "hhhh",
+			      	"brandId" : "123",
+			      	"brandName" : "苹果",
+					"modelName" : "型号",
+					"spuType" : "型号id",
+					"systemStandard" : "制式",
+					"memory" : "内存",
+					"skuColor" : "单品颜色",
+					"gdsPrice" : "单品价格",
+					"gdsName" : "iPhone8",
+					"gdsName" : "iPhone8",
+				    "contractPrice" : 0,
+				    "price" : 45000,
+				    "stock" : 800,
+				    "isCustomerPrice" : "0",
+				    "shopPriceType" : null,
+				    "appReduce" : 0,
+				    "guidePrice" : 59900,
+				    "skuInfoList" : [
+				    	{
+						    "skuId" : "1254961",
+							"gdsName" : "iPhone8",
+							"titleExt" : "hhhh",
+					      	"brandId" : "123",
+					      	"brandName" : "苹果",
+							"modelName" : "型号",
+							"spuType" : "型号id",
+							"systemStandard" : "制式",
+							"memory" : "内存",
+							"skuColor" : "单品颜色",
+							"gdsPrice" : "单品价格",
+							"gdsName" : "iPhone8",
+							"gdsName" : "iPhone8",
+						    "contractPrice" : 0,
+						    "price" : 45000,
+						    "stock" : 800,
+						    "isCustomerPrice" : "0",
+						    "shopPriceType" : null,
+						    "appReduce" : 0,
+						    "guidePrice" : 59900,
+						    "skuInfoList" : [
+						    
+						    ],
+						    "activityList" : [
+						    ]
+					    }
+				    ],
+				    "activityList" : [
+				    	{
+				    		"activityId" : "活动id",
+							"activityName" : "活动名称",
+							"skuId" : "单品ID",
+					      	"gdsId" : "商品ID",
+					      	"brandName" : "苹果",
+					      	"shopId" : "11123"
+				    	}
+				    ]
+
+		      	 },
+		      {
+				    "skuId" : "1254961",
+					"gdsName" : "iPhone8",
+					"titleExt" : "hhhh",
+			      	"brandId" : "123",
+			      	"brandName" : "苹果",
+					"modelName" : "型号",
+					"spuType" : "型号id",
+					"systemStandard" : "制式",
+					"memory" : "内存",
+					"skuColor" : "单品颜色",
+					"gdsPrice" : "单品价格",
+					"gdsName" : "iPhone8",
+					"gdsName" : "iPhone8",
+				    "contractPrice" : 0,
+				    "price" : 45000,
+				    "stock" : 800,
+				    "isCustomerPrice" : "0",
+				    "shopPriceType" : null,
+				    "appReduce" : 0,
+				    "guidePrice" : 59900,
+				    "skuInfoList" : [
+				    	{
+						    "skuId" : "1254961",
+							"gdsName" : "iPhone8",
+							"titleExt" : "hhhh",
+					      	"brandId" : "123",
+					      	"brandName" : "苹果",
+							"modelName" : "型号",
+							"spuType" : "型号id",
+							"systemStandard" : "制式",
+							"memory" : "内存",
+							"skuColor" : "单品颜色",
+							"gdsPrice" : "单品价格",
+							"gdsName" : "iPhone8",
+							"gdsName" : "iPhone8",
+						    "contractPrice" : 0,
+						    "price" : 45000,
+						    "stock" : 800,
+						    "isCustomerPrice" : "0",
+						    "shopPriceType" : null,
+						    "appReduce" : 0,
+						    "guidePrice" : 59900,
+						    "skuInfoList" : [
+						    
+						    ],
+						    "activityList" : [
+						    ]
+					    }
+				    ],
+				    "activityList" : [
+				    	{
+				    		"activityId" : "活动id",
+							"activityName" : "活动名称",
+							"skuId" : "单品ID",
+					      	"gdsId" : "商品ID",
+					      	"brandName" : "苹果",
+					      	"shopId" : "11123"
+				    	}
+				    ]
+
+		      	 }
+		    ]
+      },
+      {
+      	"brandId" : "323",
+      	"brandName" : "三星",
+      	"modelResult" : [
+			      {
+				    "skuId" : "1254961",
+					"gdsName" : "iPhone8",
+					"titleExt" : "hhhh",
+			      	"brandId" : "123",
+			      	"brandName" : "苹果",
+					"modelName" : "型号",
+					"spuType" : "型号id",
+					"systemStandard" : "制式",
+					"memory" : "内存",
+					"skuColor" : "单品颜色",
+					"gdsPrice" : "单品价格",
+					"gdsName" : "note7",
+					"gdsName" : "note7",
+				    "contractPrice" : 0,
+				    "price" : 45000,
+				    "stock" : 800,
+				    "isCustomerPrice" : "0",
+				    "shopPriceType" : null,
+				    "appReduce" : 0,
+				    "guidePrice" : 59900,
+				    "skuInfoList" : [
+				    	{
+						    "skuId" : "1254961",
+							"gdsName" : "iPhone8",
+							"titleExt" : "hhhh",
+					      	"brandId" : "123",
+					      	"brandName" : "三星",
+							"modelName" : "型号",
+							"spuType" : "型号id",
+							"systemStandard" : "制式",
+							"memory" : "内存",
+							"skuColor" : "单品颜色",
+							"gdsPrice" : "单品价格",
+							"gdsName" : "note7",
+							"gdsName" : "note7",
+						    "contractPrice" : 0,
+						    "price" : 45000,
+						    "stock" : 800,
+						    "isCustomerPrice" : "0",
+						    "shopPriceType" : null,
+						    "appReduce" : 0,
+						    "guidePrice" : 59900,
+						    "skuInfoList" : [
+						    
+						    ],
+						    "activityList" : [
+						    ]
+					    }
+				    ],
+				    "activityList" : [
+				    	{
+				    		"activityId" : "活动id",
+							"activityName" : "活动名称",
+							"skuId" : "单品ID",
+					      	"gdsId" : "商品ID",
+					      	"brandName" : "苹果",
+					      	"shopId" : "11123"
+				    	}
+				    ]
+
+		      	 },
+		      {
+				    "skuId" : "1254961",
+					"gdsName" : "iPhone8",
+					"titleExt" : "hhhh",
+			      	"brandId" : "123",
+			      	"brandName" : "苹果",
+					"modelName" : "型号",
+					"spuType" : "型号id",
+					"systemStandard" : "制式",
+					"memory" : "内存",
+					"skuColor" : "单品颜色",
+					"gdsPrice" : "单品价格",
+					"gdsName" : "iPhone8",
+					"gdsName" : "iPhone8",
+				    "contractPrice" : 0,
+				    "price" : 45000,
+				    "stock" : 800,
+				    "isCustomerPrice" : "0",
+				    "shopPriceType" : null,
+				    "appReduce" : 0,
+				    "guidePrice" : 59900,
+				    "skuInfoList" : [
+				    	{
+						    "skuId" : "1254961",
+							"gdsName" : "iPhone8",
+							"titleExt" : "hhhh",
+					      	"brandId" : "123",
+					      	"brandName" : "苹果",
+							"modelName" : "型号",
+							"spuType" : "型号id",
+							"systemStandard" : "制式",
+							"memory" : "内存",
+							"skuColor" : "单品颜色",
+							"gdsPrice" : "单品价格",
+							"gdsName" : "iPhone8",
+							"gdsName" : "iPhone8",
+						    "contractPrice" : 0,
+						    "price" : 45000,
+						    "stock" : 800,
+						    "isCustomerPrice" : "0",
+						    "shopPriceType" : null,
+						    "appReduce" : 0,
+						    "guidePrice" : 59900,
+						    "skuInfoList" : [
+						    
+						    ],
+						    "activityList" : [
+						    ]
+					    }
+				    ],
+				    "activityList" : [
+				    	{
+				    		"activityId" : "活动id",
+							"activityName" : "活动名称",
+							"skuId" : "单品ID",
+					      	"gdsId" : "商品ID",
+					      	"brandName" : "苹果",
+					      	"shopId" : "11123"
+				    	}
+				    ]
+
+		      	 },
+		      {
+				    "skuId" : "1254961",
+					"gdsName" : "iPhone8",
+					"titleExt" : "hhhh",
+			      	"brandId" : "123",
+			      	"brandName" : "苹果",
+					"modelName" : "型号",
+					"spuType" : "型号id",
+					"systemStandard" : "制式",
+					"memory" : "内存",
+					"skuColor" : "单品颜色",
+					"gdsPrice" : "单品价格",
+					"gdsName" : "iPhone8",
+					"gdsName" : "iPhone8",
+				    "contractPrice" : 0,
+				    "price" : 45000,
+				    "stock" : 800,
+				    "isCustomerPrice" : "0",
+				    "shopPriceType" : null,
+				    "appReduce" : 0,
+				    "guidePrice" : 59900,
+				    "skuInfoList" : [
+				    	{
+						    "skuId" : "1254961",
+							"gdsName" : "iPhone8",
+							"titleExt" : "hhhh",
+					      	"brandId" : "123",
+					      	"brandName" : "苹果",
+							"modelName" : "型号",
+							"spuType" : "型号id",
+							"systemStandard" : "制式",
+							"memory" : "内存",
+							"skuColor" : "单品颜色",
+							"gdsPrice" : "单品价格",
+							"gdsName" : "iPhone8",
+							"gdsName" : "iPhone8",
+						    "contractPrice" : 0,
+						    "price" : 45000,
+						    "stock" : 800,
+						    "isCustomerPrice" : "0",
+						    "shopPriceType" : null,
+						    "appReduce" : 0,
+						    "guidePrice" : 59900,
+						    "skuInfoList" : [
+						    
+						    ],
+						    "activityList" : [
+						    ]
+					    }
+				    ],
+				    "activityList" : [
+				    	{
+				    		"activityId" : "活动id",
+							"activityName" : "活动名称",
+							"skuId" : "单品ID",
+					      	"gdsId" : "商品ID",
+					      	"brandName" : "苹果",
+					      	"shopId" : "11123"
+				    	},
+				    	{
+				    		"activityId" : "活动id",
+							"activityName" : "活动名称",
+							"skuId" : "单品ID",
+					      	"gdsId" : "商品ID",
+					      	"brandName" : "苹果",
+					      	"shopId" : "11123"
+				    	}
+				    ]
+
+		      	 }
+		    ]
+      }
+      ],
+
+ "modelResult" : [
+			      {
+				    "skuId" : "1254961",
+					"gdsName" : "iPhone8",
+					"titleExt" : "hhhh",
+			      	"brandId" : "123",
+			      	"brandName" : "苹果",
+					"modelName" : "型号",
+					"spuType" : "型号id",
+					"systemStandard" : "制式",
+					"memory" : "内存",
+					"skuColor" : "单品颜色",
+					"gdsPrice" : "单品价格",
+					"gdsName" : "iPhone8",
+					"gdsName" : "iPhone8",
+				    "contractPrice" : 0,
+				    "price" : 45000,
+				    "stock" : 800,
+				    "isCustomerPrice" : "0",
+				    "shopPriceType" : null,
+				    "appReduce" : 0,
+				    "guidePrice" : 59900,
+				    "skuInfoList" : [
+				    	{
+						    "skuId" : "1254961",
+							"gdsName" : "iPhone8",
+							"titleExt" : "hhhh",
+					      	"brandId" : "123",
+					      	"brandName" : "苹果",
+							"modelName" : "型号",
+							"spuType" : "型号id",
+							"systemStandard" : "制式",
+							"memory" : "内存",
+							"skuColor" : "单品颜色",
+							"gdsPrice" : "单品价格",
+							"gdsName" : "iPhone8",
+							"gdsName" : "iPhone8",
+						    "contractPrice" : 0,
+						    "price" : 45000,
+						    "stock" : 800,
+						    "isCustomerPrice" : "0",
+						    "shopPriceType" : null,
+						    "appReduce" : 0,
+						    "guidePrice" : 59900,
+						    "skuInfoList" : [
+						    
+						    ],
+						    "activityList" : [
+						    ]
+					    }
+				    ],
+				    "activityList" : [
+				    	{
+				    		"activityId" : "活动id",
+							"activityName" : "活动名称",
+							"skuId" : "单品ID",
+					      	"gdsId" : "商品ID",
+					      	"brandName" : "苹果",
+					      	"shopId" : "11123"
+				    	}
+				    ]
+
+		      	 },
+		      			      {
+				    "skuId" : "1254961",
+					"gdsName" : "iPhone8",
+					"titleExt" : "hhhh",
+			      	"brandId" : "123",
+			      	"brandName" : "苹果",
+					"modelName" : "型号",
+					"spuType" : "型号id",
+					"systemStandard" : "制式",
+					"memory" : "内存",
+					"skuColor" : "单品颜色",
+					"gdsPrice" : "单品价格",
+					"gdsName" : "iPhone8",
+					"gdsName" : "iPhone8",
+				    "contractPrice" : 0,
+				    "price" : 45000,
+				    "stock" : 800,
+				    "isCustomerPrice" : "0",
+				    "shopPriceType" : null,
+				    "appReduce" : 0,
+				    "guidePrice" : 59900,
+				    "skuInfoList" : [
+				    	{
+						    "skuId" : "1254961",
+							"gdsName" : "iPhone8",
+							"titleExt" : "hhhh",
+					      	"brandId" : "123",
+					      	"brandName" : "苹果",
+							"modelName" : "型号",
+							"spuType" : "型号id",
+							"systemStandard" : "制式",
+							"memory" : "内存",
+							"skuColor" : "单品颜色",
+							"gdsPrice" : "单品价格",
+							"gdsName" : "iPhone8",
+							"gdsName" : "iPhone8",
+						    "contractPrice" : 0,
+						    "price" : 45000,
+						    "stock" : 800,
+						    "isCustomerPrice" : "0",
+						    "shopPriceType" : null,
+						    "appReduce" : 0,
+						    "guidePrice" : 59900,
+						    "skuInfoList" : [
+						    
+						    ],
+						    "activityList" : [
+						    ]
+					    }
+				    ],
+				    "activityList" : [
+				    	{
+				    		"activityId" : "活动id",
+							"activityName" : "活动名称",
+							"skuId" : "单品ID",
+					      	"gdsId" : "商品ID",
+					      	"brandName" : "苹果",
+					      	"shopId" : "11123"
+				    	}
+				    ]
+
+		      	 },
+		      			      {
+				    "skuId" : "1254961",
+					"gdsName" : "iPhone8",
+					"titleExt" : "hhhh",
+			      	"brandId" : "123",
+			      	"brandName" : "苹果",
+					"modelName" : "型号",
+					"spuType" : "型号id",
+					"systemStandard" : "制式",
+					"memory" : "内存",
+					"skuColor" : "单品颜色",
+					"gdsPrice" : "单品价格",
+					"gdsName" : "iPhone8",
+					"gdsName" : "iPhone8",
+				    "contractPrice" : 0,
+				    "price" : 45000,
+				    "stock" : 800,
+				    "isCustomerPrice" : "0",
+				    "shopPriceType" : null,
+				    "appReduce" : 0,
+				    "guidePrice" : 59900,
+				    "skuInfoList" : [
+				    	{
+						    "skuId" : "1254961",
+							"gdsName" : "iPhone8",
+							"titleExt" : "hhhh",
+					      	"brandId" : "123",
+					      	"brandName" : "苹果",
+							"modelName" : "型号",
+							"spuType" : "型号id",
+							"systemStandard" : "制式",
+							"memory" : "内存",
+							"skuColor" : "单品颜色",
+							"gdsPrice" : "单品价格",
+							"gdsName" : "iPhone8",
+							"gdsName" : "iPhone8",
+						    "contractPrice" : 0,
+						    "price" : 45000,
+						    "stock" : 800,
+						    "isCustomerPrice" : "0",
+						    "shopPriceType" : null,
+						    "appReduce" : 0,
+						    "guidePrice" : 59900,
+						    "skuInfoList" : [
+						    
+						    ],
+						    "activityList" : [
+						    ]
+					    }
+				    ],
+				    "activityList" : [
+				    	{
+				    		"activityId" : "活动id",
+							"activityName" : "活动名称",
+							"skuId" : "单品ID",
+					      	"gdsId" : "商品ID",
+					      	"brandName" : "苹果",
+					      	"shopId" : "11123"
+				    	}
+				    ]
+
+		      	 }
+		    ]
+}

@@ -61,11 +61,8 @@
     
     [self layoutPageView];
 //    self.itemsArrary = dic[kParityListVCShopName];
-    NSArray *arr = @[@"AAAAA",@"BBBBB",@"CCCCC"];
-    [self.itemsArrary removeAllObjects];
-    [self.itemsArrary addObjectsFromArray:arr];
-    [self.headViewBtn setTitle:@"Vivio" forState:UIControlStateNormal];
-//    self.headViewBtn.titleLabel.text = @"Vivio";//dic[@""];
+    self.itemsArrary = dic[@"modelResult"];
+    [self.headViewBtn setTitle:dic[@"brandName"] forState:UIControlStateNormal];
     [self.productTableView reloadData];
     
 }
@@ -73,7 +70,8 @@
 #pragma mark - Event
 - (void)moreProducts:(UIButton *)sender {
     
-    NSArray *arr = @[@"DDDDD",@"EEEEEE",@"FFFFF"];
+    NSDictionary *dic = [ALHelper getJsonDataJsonname:@"cg0091_te.json"];
+    NSArray *arr = dic[@"modelResult"];
     [self.itemsArrary addObjectsFromArray:arr];
     [self.productTableView reloadData];
 }
@@ -119,6 +117,8 @@ static NSString *CellIdentifier = @"BrandItemCellIdentifier";
     [offscreenCell.contentView setNeedsLayout];
     [offscreenCell.contentView layoutIfNeeded];
     CGFloat height = [offscreenCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+    CGFloat activeHeight = [offscreenCell activeHeight];
+    height = height > activeHeight ? height: activeHeight;
     return height + 1;
 }
 

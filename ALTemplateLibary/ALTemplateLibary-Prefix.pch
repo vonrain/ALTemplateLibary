@@ -23,6 +23,7 @@
 #define kAddProductNotification  @"kAddProductNotification"
 #define kDeleteProductNotification  @"kDeleteProductNotification"
 #define kDeleteMoreProductNotification  @"kDeleteMoreProductNotification"
+#define kClickItemNotification  @"kClickItemNotification"
 
 extern NSString *const kParityListVCProductName;
 extern NSString *const kParityListVCShopName;

@@ -16,6 +16,7 @@
 		C72EB5DE1F185B3E0069AB83 /* ProductHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = C72EB5DB1F185B3E0069AB83 /* ProductHeadView.m */; };
 		C72EB5DF1F185B3E0069AB83 /* ProductItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C72EB5DD1F185B3E0069AB83 /* ProductItemCell.m */; };
 		C72EB5E21F185B850069AB83 /* 删除联动.json in Resources */ = {isa = PBXBuildFile; fileRef = C72EB5E11F185B850069AB83 /* 删除联动.json */; };
+		C74B00C91F1F3232000AF7B4 /* cg0091_te.json in Resources */ = {isa = PBXBuildFile; fileRef = C74B00C81F1F3232000AF7B4 /* cg0091_te.json */; };
 		C787A4581F0E37F4006E2D0A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C787A4571F0E37F4006E2D0A /* main.m */; };
 		C787A45B1F0E37F4006E2D0A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C787A45A1F0E37F4006E2D0A /* AppDelegate.m */; };
 		C787A45E1F0E37F4006E2D0A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C787A45D1F0E37F4006E2D0A /* ViewController.m */; };
@@ -71,6 +72,7 @@
 		C72EB5DC1F185B3E0069AB83 /* ProductItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductItemCell.h; sourceTree = "<group>"; };
 		C72EB5DD1F185B3E0069AB83 /* ProductItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductItemCell.m; sourceTree = "<group>"; };
 		C72EB5E11F185B850069AB83 /* 删除联动.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "删除联动.json"; sourceTree = "<group>"; };
+		C74B00C81F1F3232000AF7B4 /* cg0091_te.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cg0091_te.json; sourceTree = "<group>"; };
 		C787A4531F0E37F4006E2D0A /* ALTemplateLibary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ALTemplateLibary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C787A4571F0E37F4006E2D0A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C787A4591F0E37F4006E2D0A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				C72EB5E11F185B850069AB83 /* 删除联动.json */,
+				C74B00C81F1F3232000AF7B4 /* cg0091_te.json */,
 			);
 			path = StaticData;
 			sourceTree = "<group>";
@@ -428,6 +431,7 @@
 			files = (
 				C787A4631F0E37F4006E2D0A /* Assets.xcassets in Resources */,
 				C72EB5E21F185B850069AB83 /* 删除联动.json in Resources */,
+				C74B00C91F1F3232000AF7B4 /* cg0091_te.json in Resources */,
 				C7145A321F0F1588007DEE24 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
