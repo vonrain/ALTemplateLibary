@@ -17,6 +17,7 @@
 		C72EB5DF1F185B3E0069AB83 /* ProductItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C72EB5DD1F185B3E0069AB83 /* ProductItemCell.m */; };
 		C72EB5E21F185B850069AB83 /* 删除联动.json in Resources */ = {isa = PBXBuildFile; fileRef = C72EB5E11F185B850069AB83 /* 删除联动.json */; };
 		C74B00C91F1F3232000AF7B4 /* cg0091_te.json in Resources */ = {isa = PBXBuildFile; fileRef = C74B00C81F1F3232000AF7B4 /* cg0091_te.json */; };
+		C74B00CC1F20AD77000AF7B4 /* NSString+Range.m in Sources */ = {isa = PBXBuildFile; fileRef = C74B00CB1F20AD77000AF7B4 /* NSString+Range.m */; };
 		C787A4581F0E37F4006E2D0A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C787A4571F0E37F4006E2D0A /* main.m */; };
 		C787A45B1F0E37F4006E2D0A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C787A45A1F0E37F4006E2D0A /* AppDelegate.m */; };
 		C787A45E1F0E37F4006E2D0A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C787A45D1F0E37F4006E2D0A /* ViewController.m */; };
@@ -73,6 +74,8 @@
 		C72EB5DD1F185B3E0069AB83 /* ProductItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductItemCell.m; sourceTree = "<group>"; };
 		C72EB5E11F185B850069AB83 /* 删除联动.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "删除联动.json"; sourceTree = "<group>"; };
 		C74B00C81F1F3232000AF7B4 /* cg0091_te.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cg0091_te.json; sourceTree = "<group>"; };
+		C74B00CA1F20AD77000AF7B4 /* NSString+Range.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Range.h"; sourceTree = "<group>"; };
+		C74B00CB1F20AD77000AF7B4 /* NSString+Range.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Range.m"; sourceTree = "<group>"; };
 		C787A4531F0E37F4006E2D0A /* ALTemplateLibary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ALTemplateLibary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C787A4571F0E37F4006E2D0A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C787A4591F0E37F4006E2D0A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -296,6 +299,8 @@
 			children = (
 				C7959A181F185931003D3519 /* ALHelper.h */,
 				C7959A191F185931003D3519 /* ALHelper.m */,
+				C74B00CA1F20AD77000AF7B4 /* NSString+Range.h */,
+				C74B00CB1F20AD77000AF7B4 /* NSString+Range.m */,
 			);
 			path = "工具";
 			sourceTree = "<group>";
@@ -516,6 +521,7 @@
 				C7F4D41A1F131A060056561A /* MoreProductVC.m in Sources */,
 				C71CECEF1F1CF61500AAFD38 /* BrandItemCell.m in Sources */,
 				C787A49F1F0E3FC4006E2D0A /* LongPressChangeVC.m in Sources */,
+				C74B00CC1F20AD77000AF7B4 /* NSString+Range.m in Sources */,
 				C7F4D4141F0F31B00056561A /* ParityListVC.m in Sources */,
 				C7F4D4231F137D1F0056561A /* ProductTVCell.m in Sources */,
 				C72EB5DE1F185B3E0069AB83 /* ProductHeadView.m in Sources */,

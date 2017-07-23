@@ -67,6 +67,27 @@
     
 }
 
+- (CGFloat)caculationDataForHeight:(id)data {
+    
+    NSMutableDictionary *dic = (NSMutableDictionary *)data;
+    NSArray *itemsArrary = dic[@"modelResult"];
+    
+    int totalCount = 0;
+    for (int i = 0 ; i < itemsArrary.count; i++) {
+        
+        NSDictionary *itemDic = itemsArrary[i];
+        NSArray *skuArr = itemDic[@"skuInfoList"];
+        NSArray *activeArr= itemDic[@"activityList"];
+       
+        int count = skuArr.count > activeArr.count ? skuArr.count:activeArr.count;
+        totalCount += count;
+    }
+    
+    return totalCount *40 ;
+}
+
+
+
 #pragma mark - Event
 - (void)moreProducts:(UIButton *)sender {
     
@@ -74,6 +95,10 @@
     NSArray *arr = dic[@"modelResult"];
     [self.itemsArrary addObjectsFromArray:arr];
     [self.productTableView reloadData];
+    
+    if ([self.delegate respondsToSelector:@selector(refrashHeight:)]) {
+        [self.delegate refrashHeight:self];
+    }
 }
 
 #pragma mark - UITableViewDataSource Methods
@@ -92,7 +117,6 @@ static NSString *CellIdentifier = @"BrandItemCellIdentifier";
 //    static NSString *CellIdentifier = @"BrandItemCellIdentifier";
     
     BrandItemCell *cell = (BrandItemCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
     if (!cell)
     {
         cell = [[BrandItemCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
@@ -106,27 +130,27 @@ static NSString *CellIdentifier = @"BrandItemCellIdentifier";
 
 #pragma mark - UITableViewDelegate Methods
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static BrandItemCell *offscreenCell;
-    if (!offscreenCell) {
-        offscreenCell = [[BrandItemCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    // configure offscreenCell ...
-    [offscreenCell generateData:self.itemsArrary[indexPath.row]];
-    [offscreenCell.contentView setNeedsLayout];
-    [offscreenCell.contentView layoutIfNeeded];
-    CGFloat height = [offscreenCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-    CGFloat activeHeight = [offscreenCell activeHeight];
-    height = height > activeHeight ? height: activeHeight;
-    return height + 1;
-}
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    return [tableView fd_heightForCellWithIdentifier:CellIdentifier cacheByIndexPath:indexPath configuration:^(BrandItemCell *cell) {
-//        [cell generateData:self.itemsArrary[indexPath.row]];
-//    }];
+//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    static BrandItemCell *offscreenCell;
+//    if (!offscreenCell) {
+//        offscreenCell = [[BrandItemCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//    }
+//    // configure offscreenCell ...
+//    [offscreenCell generateData:self.itemsArrary[indexPath.row]];
+//    [offscreenCell.contentView setNeedsLayout];
+//    [offscreenCell.contentView layoutIfNeeded];
+//    CGFloat height = [offscreenCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+//    CGFloat activeHeight = [offscreenCell activeHeight];
+//    height = height > activeHeight ? height: activeHeight;
+//    return height + 1;
 //}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    NSMutableArray *totalHeight = [NSMutableArray new];
+    
+    return 40;
+}
 
 
 #pragma mark - setter && getter

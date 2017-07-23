@@ -13,7 +13,7 @@
 #import "DragVC.h"
 #import "LongPressChangeVC.h"
 
-@interface ShopPricListVC ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,UISearchDisplayDelegate>
+@interface ShopPricListVC ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,UISearchDisplayDelegate,BrandPriceListCellDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 /**数据源*/
@@ -106,6 +106,14 @@
         longPressChangVC.title = @"长按删除及移动";
         [self.navigationController pushViewController:longPressChangVC animated:YES];
     }
+    else if ([type isEqualToString:@"color"]){
+        
+        MyLog(@"jump to %@",paramDic);
+        LongPressChangeVC *longPressChangVC = [[LongPressChangeVC alloc] init];
+        [longPressChangVC generateData:nil];
+        longPressChangVC.title = @"长按删除及移动";
+        [self.navigationController pushViewController:longPressChangVC animated:YES];
+    }
 }
 
 #pragma mark - Table view data source
@@ -139,12 +147,23 @@
         
         [cell generateData:self.dataArray[indexPath.row]];
     }
+    
+    cell.delegate = self;
     return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-        return 480;
+//        return 480;
+    
+    static BrandPriceListCell *offscreenCell;
+    if (!offscreenCell) {
+        offscreenCell = [[BrandPriceListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"mainCell"];
+    }
+    CGFloat height = [offscreenCell caculationDataForHeight:self.dataArray[indexPath.row]];
+    return height + 41;
+    
+    
 //    PackageDetialModel *item = self.packageDetialModel.packageDetialArrary[indexPath.row];
 //    return item.totalHeight + kCardPackageDetialCellPadding;
     
@@ -164,6 +183,15 @@
 //        return height + 1;
 //        
 //    }
+}
+
+#pragma mark - 
+
+-(void)refrashHeight:(BrandPriceListCell *)cell {
+    
+    
+    NSIndexPath *indexPath=[self.tableView indexPathForCell:cell];
+    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar

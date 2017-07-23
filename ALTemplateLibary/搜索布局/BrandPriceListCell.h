@@ -8,9 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class BrandPriceListCell;
+@protocol BrandPriceListCellDelegate <NSObject>
+
+-(void)refrashHeight:(BrandPriceListCell *)cell;
+@end
+
 @interface BrandPriceListCell : UITableViewCell
 
+@property (nonatomic, weak) id<BrandPriceListCellDelegate> delegate;
 - (void)generateData:(id)data;
 
+- (CGFloat)caculationDataForHeight:(id)data;
 + (CGFloat)cellHeightAtIndexWithMaxItemCount:(NSInteger)count;
 @end

@@ -8,13 +8,15 @@
 
 #import "BrandItemCell.h"
 #import "YYText.h"
+#import "NSString+Range.h"
 
 @interface BrandItemCell ()
 
 @property (nonatomic, strong) UIView *detialView;
 @property (nonatomic, strong) UILabel *productsModelLabel;
 @property (nonatomic, strong) UIButton *productsModelBtn;
-@property (nonatomic, strong) UILabel *colorPriceLabel;
+@property (nonatomic, strong) YYLabel *colorPriceLabel;
+//@property (nonatomic, strong) YYLabel  *titleTextLabel;
 @property (nonatomic, strong) UIView *activityView;
 @property (nonatomic, strong) UIView *leftLine;
 @property (nonatomic, strong) UIView *rightLine;
@@ -133,10 +135,89 @@
     }
     
     NSString *colorPriceString = [str copy];
-    self.colorPriceLabel.text = colorPriceString;
+    
+    self.colorPriceLabel.attributedText = [self titleOK:arr];
+//    self.colorPriceLabel.text = colorPriceString;
     self.activeArr = dic[@"activityList"];
     [self layoutPageView];
     
+}
+
+- (NSMutableAttributedString *)titleOK:(NSArray *)arr {
+    
+    // 颜色价格
+    NSMutableString *str = [NSMutableString new];
+    for (NSDictionary *item in arr) {
+        [str appendFormat:@"%@ %@ ",item[@"skuColor"],item[@"gdsPrice"]];
+    }
+    
+    NSString *orgStr = [str copy];
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:orgStr];
+    [text yy_setFont:[UIFont systemFontOfSize:9] range:text.yy_rangeOfAll];
+    
+    __weak __typeof(&*self)weakSelf = self;
+//    for (NSDictionary *model in arr) {
+    for (int j = 0; j < arr.count; j++) {
+    
+        NSDictionary *model = arr[j];
+        NSMutableArray *rangeArr = [NSMutableArray new];
+        NSString *tee = [[text string] copy];
+        [[tee rangesOfString:model[@"gdsPrice"] options:0 serachRange:NSMakeRange(0, tee.length)]
+         enumerateObjectsUsingBlock:^(NSValue *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+             NSRange ra = [obj rangeValue];
+//             MyLog(@"my range is %@", NSStringFromRange(ra));
+             [rangeArr addObject:NSStringFromRange(ra)];
+         }] ;
+        
+        
+        MyLog(@"rangeArr is %@", rangeArr);
+        
+        for (int k = 0; k < rangeArr.count; k++) {
+            
+            NSRange linkRange = NSRangeFromString(rangeArr[k]);
+            [text yy_setTextHighlightRange:linkRange
+                                     color:[UIColor colorWithRed:0.093 green:0.492 blue:1.000 alpha:1.000]
+                           backgroundColor:[UIColor colorWithWhite:0.000 alpha:0.220]
+                                 tapAction:^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect){
+                                     NSString *title = [text.string substringWithRange:range];
+                                     MyLog(@"\n text.string :%@",text.string);
+                                     MyLog(@"\n title :%@",title);
+                                     
+                                     BOOL isFound = NO;
+                                     int i = 0;
+                                     for (i = 0; i < rangeArr.count; i++) {
+                                         if([rangeArr[i] isEqualToString:NSStringFromRange(range)]){
+                                             break;
+                                         }
+                                     }
+                                     
+                                     int f = 0;
+                                     for (f = 0 ; f < arr.count; f++) {
+                                         NSDictionary *model = arr[f];
+                                         if ([model[@"gdsPrice"] isEqualToString:title]) {
+                                             if(i == 0){
+                                                 isFound = YES;
+                                                 break;
+                                             }
+                                             else{
+                                                 i--;
+                                             }
+                                         }
+                                     }
+                                     if(isFound){
+                                         NSDictionary *model = arr[f];
+                                         NSDictionary *info = @{@"type":@"color",
+                                                                @"param":model
+                                                                };
+                                         [[NSNotificationCenter defaultCenter] postNotificationName:kShopPricListClickItemNotification object:weakSelf userInfo:info];
+                                     }
+                                 }];
+            
+            
+        }
+    }
+    
+    return text;
 }
 
 #pragma mark - EventResponse
@@ -199,9 +280,9 @@
 	}
 	return _productsModelBtn;
 }
-- (UILabel *)colorPriceLabel {
+- (YYLabel *)colorPriceLabel {
 	if (_colorPriceLabel == nil) {
-        _colorPriceLabel = [[UILabel alloc] init];
+        _colorPriceLabel = [[YYLabel alloc] init];
         _colorPriceLabel.backgroundColor = [UIColor whiteColor];
         _colorPriceLabel.numberOfLines = 0;
         _colorPriceLabel.preferredMaxLayoutWidth = (MainWidth-2*kProductsModelLabelWidth-20);
