@@ -1,0 +1,87 @@
+{
+  "spuType" : "456",
+  "modelName" : "G7 Plus",
+  "systemStandard" : "4G全网通",
+  "memory" : "16G",
+  "gdsId" : "123",
+  "colorList" : [
+    {
+      "skuColor" : "金色"
+    },
+    {
+      "skuColor" : "银色"
+    },
+    {
+      "skuColor" : "黑色"
+    },
+    {
+      "skuColor" : "月光银"
+    },
+    {
+      "skuColor" : "灰色"
+    }
+  ],
+  "shopInfoList" : [
+    {
+      "shopId" : "1122",
+      "shopName" : "华为旗舰店"
+    },
+    {
+      "shopId" : "212312",
+      "shopName" : "北京动力"
+    }
+  ],
+
+ "skuPriceList" : [
+    {
+      "gdsId" : "123",
+      "skuId" : "456",
+      "shopId" : "1122",
+      "spuType" : "2222",
+      "modelName" : "G7 Plus",
+      "systemStandard" : "4G全网通",
+      "memory" : "16G",
+      "gdsPrice" : 40000,
+      "provinceCode" : "95",
+      "guidePrice" : 30000
+    },
+    {
+      "gdsId" : "123",
+      "skuId" : "456",
+      "shopId" : "1122",
+      "spuType" : "2222",
+      "modelName" : "G7 Plus",
+      "systemStandard" : "4G全网通",
+      "memory" : "16G",
+      "gdsPrice" : 40000,
+      "provinceCode" : "95",
+      "guidePrice" : 30000
+    }
+  ],
+  "activityList" : [
+        {
+          "brandName" : "苹果",
+          "shopId" : "11123",
+          "activityId" : "活动id",
+          "activityName" : "活动名称",
+          "skuId" : "单品ID",
+          "gdsId" : "商品ID"
+        },
+        {
+          "brandName" : "苹果",
+          "shopId" : "11123",
+          "activityId" : "活动id",
+          "activityName" : "活动名称",
+          "skuId" : "单品ID",
+          "gdsId" : "商品ID"
+        },
+        {
+          "brandName" : "苹果",
+          "shopId" : "11123",
+          "activityId" : "活动id",
+          "activityName" : "活动名称",
+          "skuId" : "单品ID",
+          "gdsId" : "商品ID"
+        }
+  ]
+}

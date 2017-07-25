@@ -22,6 +22,8 @@
 
 @implementation BrandPriceListCell
 
+static NSString *CellIdentifier = @"BrandItemCellIdentifier";
+
 + (CGFloat)cellHeightAtIndexWithMaxItemCount:(NSInteger)count {
     
     
@@ -111,7 +113,7 @@
 {
     return self.itemsArrary.count;
 }
-static NSString *CellIdentifier = @"BrandItemCellIdentifier";
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 //    static NSString *CellIdentifier = @"BrandItemCellIdentifier";

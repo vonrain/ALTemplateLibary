@@ -12,6 +12,7 @@
 #import "DragUITableViewVC.h"
 #import "ParityListVC.h"
 #import "ShopPricListVC.h"
+#import "GoodsPriceCompareVC.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -52,12 +53,16 @@
     ShopPricListVC *shopPriceVC = [[ShopPricListVC alloc] init];
     shopPriceVC.title = @"店铺比价单";
     
+    GoodsPriceCompareVC *goodsPriceVC = [[GoodsPriceCompareVC alloc] init];
+    goodsPriceVC.title = @"商品比价单";
+    
     self.controllers = @[
                          longPressChangVC,
                          dragVC,
                          dragUITableViewVC,
                          parityListVC,
-                         shopPriceVC
+                         shopPriceVC,
+                         goodsPriceVC
                          ];
 }
 

@@ -25,6 +25,8 @@
 
 @end
 
+
+static NSString *BrandPriceListCellId = @"BrandPriceListCellId";
 @implementation ShopPricListVC
 
 - (void)dealloc {
@@ -54,7 +56,7 @@
     
     [self generateData:nil];
     
-    [self.tableView registerClass:[BrandPriceListCell class] forCellReuseIdentifier:@"mainCell"];
+    [self.tableView registerClass:[BrandPriceListCell class] forCellReuseIdentifier:BrandPriceListCellId];
     [self layoutPageView];
     [self.headTipsView generateData:nil];
     
@@ -134,9 +136,9 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    BrandPriceListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mainCell"];
+    BrandPriceListCell *cell = [tableView dequeueReusableCellWithIdentifier:BrandPriceListCellId];
     if (cell == nil) {
-        cell = [[BrandPriceListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"mainCell"];
+        cell = [[BrandPriceListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:BrandPriceListCellId];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     /**对TableView进行判断，如果是搜索结果展示视图，返回不同数据源*/
@@ -158,7 +160,7 @@
     
     static BrandPriceListCell *offscreenCell;
     if (!offscreenCell) {
-        offscreenCell = [[BrandPriceListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"mainCell"];
+        offscreenCell = [[BrandPriceListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:BrandPriceListCellId];
     }
     CGFloat height = [offscreenCell caculationDataForHeight:self.dataArray[indexPath.row]];
     return height + 41;
@@ -173,7 +175,7 @@
 //    else{
 //        static BrandPriceListCell *offscreenCell;
 //        if (!offscreenCell) {
-//            offscreenCell = [[BrandPriceListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"mainCell"];
+//            offscreenCell = [[BrandPriceListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:BrandPriceListCellId];
 //        }
 //        // configure offscreenCell ...
 //        [offscreenCell generateData:nil];

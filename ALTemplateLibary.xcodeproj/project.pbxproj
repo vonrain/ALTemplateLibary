@@ -18,6 +18,13 @@
 		C72EB5E21F185B850069AB83 /* 删除联动.json in Resources */ = {isa = PBXBuildFile; fileRef = C72EB5E11F185B850069AB83 /* 删除联动.json */; };
 		C74B00C91F1F3232000AF7B4 /* cg0091_te.json in Resources */ = {isa = PBXBuildFile; fileRef = C74B00C81F1F3232000AF7B4 /* cg0091_te.json */; };
 		C74B00CC1F20AD77000AF7B4 /* NSString+Range.m in Sources */ = {isa = PBXBuildFile; fileRef = C74B00CB1F20AD77000AF7B4 /* NSString+Range.m */; };
+		C74B00D31F2443A6000AF7B4 /* GoodsPriceCompareVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C74B00D21F2443A6000AF7B4 /* GoodsPriceCompareVC.m */; };
+		C74B00D61F244CF8000AF7B4 /* GoodsPriceCompareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C74B00D51F244CF8000AF7B4 /* GoodsPriceCompareCell.m */; };
+		C74B00D91F24EF0D000AF7B4 /* HeadTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C74B00D81F24EF0D000AF7B4 /* HeadTimeView.m */; };
+		C74B00DC1F2579AF000AF7B4 /* ColorSortingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C74B00DB1F2579AF000AF7B4 /* ColorSortingView.m */; };
+		C75642341F259EB700219C39 /* 排序三角.png in Resources */ = {isa = PBXBuildFile; fileRef = C75642331F259EB700219C39 /* 排序三角.png */; };
+		C75642391F25A41000219C39 /* ColorSortingBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = C75642381F25A41000219C39 /* ColorSortingBtn.m */; };
+		C756423B1F25D2E800219C39 /* cg0095_te.json in Resources */ = {isa = PBXBuildFile; fileRef = C756423A1F25D2E800219C39 /* cg0095_te.json */; };
 		C787A4581F0E37F4006E2D0A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C787A4571F0E37F4006E2D0A /* main.m */; };
 		C787A45B1F0E37F4006E2D0A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C787A45A1F0E37F4006E2D0A /* AppDelegate.m */; };
 		C787A45E1F0E37F4006E2D0A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C787A45D1F0E37F4006E2D0A /* ViewController.m */; };
@@ -76,6 +83,18 @@
 		C74B00C81F1F3232000AF7B4 /* cg0091_te.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cg0091_te.json; sourceTree = "<group>"; };
 		C74B00CA1F20AD77000AF7B4 /* NSString+Range.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Range.h"; sourceTree = "<group>"; };
 		C74B00CB1F20AD77000AF7B4 /* NSString+Range.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Range.m"; sourceTree = "<group>"; };
+		C74B00D11F2443A6000AF7B4 /* GoodsPriceCompareVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsPriceCompareVC.h; sourceTree = "<group>"; };
+		C74B00D21F2443A6000AF7B4 /* GoodsPriceCompareVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsPriceCompareVC.m; sourceTree = "<group>"; };
+		C74B00D41F244CF8000AF7B4 /* GoodsPriceCompareCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsPriceCompareCell.h; sourceTree = "<group>"; };
+		C74B00D51F244CF8000AF7B4 /* GoodsPriceCompareCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsPriceCompareCell.m; sourceTree = "<group>"; };
+		C74B00D71F24EF0D000AF7B4 /* HeadTimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadTimeView.h; sourceTree = "<group>"; };
+		C74B00D81F24EF0D000AF7B4 /* HeadTimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadTimeView.m; sourceTree = "<group>"; };
+		C74B00DA1F2579AF000AF7B4 /* ColorSortingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorSortingView.h; sourceTree = "<group>"; };
+		C74B00DB1F2579AF000AF7B4 /* ColorSortingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorSortingView.m; sourceTree = "<group>"; };
+		C75642331F259EB700219C39 /* 排序三角.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "排序三角.png"; sourceTree = "<group>"; };
+		C75642371F25A41000219C39 /* ColorSortingBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorSortingBtn.h; sourceTree = "<group>"; };
+		C75642381F25A41000219C39 /* ColorSortingBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorSortingBtn.m; sourceTree = "<group>"; };
+		C756423A1F25D2E800219C39 /* cg0095_te.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cg0095_te.json; sourceTree = "<group>"; };
 		C787A4531F0E37F4006E2D0A /* ALTemplateLibary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ALTemplateLibary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C787A4571F0E37F4006E2D0A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C787A4591F0E37F4006E2D0A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -180,8 +199,34 @@
 			children = (
 				C72EB5E11F185B850069AB83 /* 删除联动.json */,
 				C74B00C81F1F3232000AF7B4 /* cg0091_te.json */,
+				C756423A1F25D2E800219C39 /* cg0095_te.json */,
 			);
 			path = StaticData;
+			sourceTree = "<group>";
+		};
+		C74B00CD1F244293000AF7B4 /* 商品比价 */ = {
+			isa = PBXGroup;
+			children = (
+				C74B00D11F2443A6000AF7B4 /* GoodsPriceCompareVC.h */,
+				C74B00D21F2443A6000AF7B4 /* GoodsPriceCompareVC.m */,
+				C74B00D41F244CF8000AF7B4 /* GoodsPriceCompareCell.h */,
+				C74B00D51F244CF8000AF7B4 /* GoodsPriceCompareCell.m */,
+				C74B00D71F24EF0D000AF7B4 /* HeadTimeView.h */,
+				C74B00D81F24EF0D000AF7B4 /* HeadTimeView.m */,
+				C74B00DA1F2579AF000AF7B4 /* ColorSortingView.h */,
+				C74B00DB1F2579AF000AF7B4 /* ColorSortingView.m */,
+				C75642371F25A41000219C39 /* ColorSortingBtn.h */,
+				C75642381F25A41000219C39 /* ColorSortingBtn.m */,
+			);
+			path = "商品比价";
+			sourceTree = "<group>";
+		};
+		C75642321F259E8300219C39 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				C75642331F259EB700219C39 /* 排序三角.png */,
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 		C787A44A1F0E37F4006E2D0A = {
@@ -219,6 +264,7 @@
 				C787A4991F0E3FC4006E2D0A /* tableview横向tableview单元格 */,
 				C7F4D4111F0F30A40056561A /* 删除联动 */,
 				C71CECE01F1C60E900AAFD38 /* 搜索布局 */,
+				C74B00CD1F244293000AF7B4 /* 商品比价 */,
 				C787A4621F0E37F4006E2D0A /* Assets.xcassets */,
 				C787A4671F0E37F4006E2D0A /* Info.plist */,
 				C787A4561F0E37F4006E2D0A /* Supporting Files */,
@@ -229,6 +275,7 @@
 		C787A4561F0E37F4006E2D0A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C75642321F259E8300219C39 /* images */,
 				C72EB5E01F185B850069AB83 /* StaticData */,
 				C787A4A31F0F1089006E2D0A /* ALTemplateLibary-Prefix.pch */,
 				C787A4571F0E37F4006E2D0A /* main.m */,
@@ -434,9 +481,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C756423B1F25D2E800219C39 /* cg0095_te.json in Resources */,
 				C787A4631F0E37F4006E2D0A /* Assets.xcassets in Resources */,
 				C72EB5E21F185B850069AB83 /* 删除联动.json in Resources */,
 				C74B00C91F1F3232000AF7B4 /* cg0091_te.json in Resources */,
+				C75642341F259EB700219C39 /* 排序三角.png in Resources */,
 				C7145A321F0F1588007DEE24 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -518,8 +567,10 @@
 				C71CECE91F1CB3F500AAFD38 /* BrandPriceListCell.m in Sources */,
 				C787A45E1F0E37F4006E2D0A /* ViewController.m in Sources */,
 				C72EB5DF1F185B3E0069AB83 /* ProductItemCell.m in Sources */,
+				C74B00D61F244CF8000AF7B4 /* GoodsPriceCompareCell.m in Sources */,
 				C7F4D41A1F131A060056561A /* MoreProductVC.m in Sources */,
 				C71CECEF1F1CF61500AAFD38 /* BrandItemCell.m in Sources */,
+				C74B00DC1F2579AF000AF7B4 /* ColorSortingView.m in Sources */,
 				C787A49F1F0E3FC4006E2D0A /* LongPressChangeVC.m in Sources */,
 				C74B00CC1F20AD77000AF7B4 /* NSString+Range.m in Sources */,
 				C7F4D4141F0F31B00056561A /* ParityListVC.m in Sources */,
@@ -527,10 +578,13 @@
 				C72EB5DE1F185B3E0069AB83 /* ProductHeadView.m in Sources */,
 				C71CECE31F1C8BF400AAFD38 /* ShopPricListVC.m in Sources */,
 				C787A49E1F0E3FC4006E2D0A /* ColumnCell.m in Sources */,
+				C74B00D31F2443A6000AF7B4 /* GoodsPriceCompareVC.m in Sources */,
 				C71CECE61F1C9A1000AAFD38 /* HeadTipsView.m in Sources */,
 				C7F4D4201F13611F0056561A /* MoreProductCollectionCell.m in Sources */,
 				C787A45B1F0E37F4006E2D0A /* AppDelegate.m in Sources */,
+				C75642391F25A41000219C39 /* ColorSortingBtn.m in Sources */,
 				C787A4581F0E37F4006E2D0A /* main.m in Sources */,
+				C74B00D91F24EF0D000AF7B4 /* HeadTimeView.m in Sources */,
 				C7959A1A1F185931003D3519 /* ALHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
