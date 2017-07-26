@@ -94,23 +94,13 @@
 #pragma mark - click events
 -(void)addClick:(id)sender{
     
-    static int i = 3;
-    NSString *item = [NSString stringWithFormat:@"iPhone %d",i++];
-    NSMutableArray *shopItems = [NSMutableArray new];
-    for (int j = 0; j<i+1; j++) {
-        NSString *shop = [NSString stringWithFormat:@"苹果%d",j];
-        [shopItems addObject:shop];
-    }
+    NSDictionary *itemDic = [ALHelper getJsonDataJsonname:@"cg0092_te.json"];
+    NSMutableArray *itemArrary = itemDic[@"brandResult"];
     
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
-                         item,kParityListVCProductName,
-                         shopItems,kParityListVCShopName,
-                         nil];
-    
-    [self.collectionCellItemArrary addObject:dic];
+    [self.collectionCellItemArrary addObjectsFromArray:[itemArrary mutableCopy]];
     [self.collectionView reloadData];
     
-    NSDictionary *info = @{@"title":dic};
+    NSDictionary *info = @{@"title":[itemArrary mutableCopy]};
     [[NSNotificationCenter defaultCenter] postNotificationName:kAddProductNotification object:self userInfo:info];
 }
 

@@ -86,8 +86,9 @@ typedef NS_ENUM(NSUInteger, XWDragCellCollectionViewScrollDirection) {
 }
 
 - (void)addItemAction:(NSNotification *)notification {
-    id addItem = (NSString*)notification.userInfo[@"title"];
-    [self.itemArrary addObject:addItem];
+    id addItem = (NSArray*)notification.userInfo[@"title"];
+    
+    [self.itemArrary addObjectsFromArray:addItem];
     [self.productsTableView reloadData];
 }
 
@@ -127,7 +128,7 @@ typedef NS_ENUM(NSUInteger, XWDragCellCollectionViewScrollDirection) {
     NSArray *arr = dic[kParityListVCShopName];
     NSInteger count = arr.count ;
     
-    CGFloat height = 80.f +40.f *count;
+    CGFloat height = 80.f +80.f *count;
 //    MyLog(@"%f",height);
     return  height;
 }

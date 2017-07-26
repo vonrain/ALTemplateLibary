@@ -108,8 +108,9 @@
 #pragma mark - Event
 - (void)moreProducts:(UIButton *)sender {
     
-    NSArray *arr = @[@"长期",@"广告",@"颜色"];
-    [self.itemsArrary addObjectsFromArray:arr];
+    NSDictionary *itemDic = [ALHelper getJsonDataJsonname:@"cg0092_te.json"];
+    NSMutableArray *itemArrary = itemDic[@"shopResult"];
+    [self.itemsArrary addObjectsFromArray:itemArrary];
     [self.productTableView reloadData];
     
     if ([self.delegate respondsToSelector:@selector(refrashHeight:)]) {
