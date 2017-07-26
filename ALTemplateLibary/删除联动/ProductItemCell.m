@@ -176,11 +176,13 @@
     }
 }
 
-- (NSMutableAttributedString *)titleOK:(NSArray *)arr {
+- (NSMutableAttributedString *)titleOK:(NSArray *)itemsArr {
     
     // 颜色价格
     NSMutableString *str = [NSMutableString new];
-    for (NSDictionary *item in arr) {
+//    for (NSDictionary *item in itemsArr) {
+    for (int i = 0; i < itemsArr.count; i++) {
+        NSDictionary *item = itemsArr[i];
         // arr 是modelInfoList 型号列表
         [str appendFormat:@"%@ %@",item[@"systemStandard"],item[@"memory"]];
         NSArray *colorsArrary = item[@"skuInfoList"];
@@ -198,64 +200,72 @@
     [text yy_setFont:[UIFont systemFontOfSize:9] range:text.yy_rangeOfAll];
     
     __weak __typeof(&*self)weakSelf = self;
-    //    for (NSDictionary *model in arr) {
-    for (int j = 0; j < arr.count; j++) {
-        
-        NSDictionary *model = arr[j];
-        NSMutableArray *rangeArr = [NSMutableArray new];
-        NSString *tee = [[text string] copy];
-        [[tee rangesOfString:model[@"gdsPrice"] options:0 serachRange:NSMakeRange(0, tee.length)]
-         enumerateObjectsUsingBlock:^(NSValue *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-             NSRange ra = [obj rangeValue];
-             //             MyLog(@"my range is %@", NSStringFromRange(ra));
-             [rangeArr addObject:NSStringFromRange(ra)];
-         }] ;
-        
-        
-        MyLog(@"rangeArr is %@", rangeArr);
-        
-        for (int k = 0; k < rangeArr.count; k++) {
+    
+    for (int n = 0; n < itemsArr.count; n++) {
+            NSDictionary *item = itemsArr[n];
             
-            NSRange linkRange = NSRangeFromString(rangeArr[k]);
-            [text yy_setTextHighlightRange:linkRange
-                                     color:[UIColor colorWithRed:0.093 green:0.492 blue:1.000 alpha:1.000]
-                           backgroundColor:[UIColor colorWithWhite:0.000 alpha:0.220]
-                                 tapAction:^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect){
-                                     NSString *title = [text.string substringWithRange:range];
-                                     MyLog(@"\n text.string :%@",text.string);
-                                     MyLog(@"\n title :%@",title);
-                                     
-                                     BOOL isFound = NO;
-                                     int i = 0;
-                                     for (i = 0; i < rangeArr.count; i++) {
-                                         if([rangeArr[i] isEqualToString:NSStringFromRange(range)]){
-                                             break;
-                                         }
-                                     }
-                                     
-                                     int f = 0;
-                                     for (f = 0 ; f < arr.count; f++) {
-                                         NSDictionary *model = arr[f];
-                                         if ([model[@"gdsPrice"] isEqualToString:title]) {
-                                             if(i == 0){
-                                                 isFound = YES;
+        NSArray *arr = item[@"skuInfoList"];
+        
+        for (int j = 0; j < arr.count; j++) {
+            
+            NSDictionary *model = arr[j];
+            NSMutableArray *rangeArr = [NSMutableArray new];
+            NSString *tee = [[text string] copy];
+            [[tee rangesOfString:model[@"gdsPrice"] options:0 serachRange:NSMakeRange(0, tee.length)]
+             enumerateObjectsUsingBlock:^(NSValue *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                 NSRange ra = [obj rangeValue];
+                 //             MyLog(@"my range is %@", NSStringFromRange(ra));
+                 [rangeArr addObject:NSStringFromRange(ra)];
+             }] ;
+            
+            
+            MyLog(@"rangeArr is %@", rangeArr);
+            
+            for (int k = 0; k < rangeArr.count; k++) {
+                
+                NSRange linkRange = NSRangeFromString(rangeArr[k]);
+                [text yy_setTextHighlightRange:linkRange
+                                         color:[UIColor colorWithRed:0.093 green:0.492 blue:1.000 alpha:1.000]
+                               backgroundColor:[UIColor colorWithWhite:0.000 alpha:0.220]
+                                     tapAction:^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect){
+                                         NSString *title = [text.string substringWithRange:range];
+                                         MyLog(@"\n text.string :%@",text.string);
+                                         MyLog(@"\n title :%@",title);
+                                         
+                                         BOOL isFound = NO;
+                                         int i = 0;
+                                         for (i = 0; i < rangeArr.count; i++) {
+                                             if([rangeArr[i] isEqualToString:NSStringFromRange(range)]){
                                                  break;
                                              }
-                                             else{
-                                                 i--;
+                                         }
+                                         
+                                         int f = 0;
+                                         for (f = 0 ; f < arr.count; f++) {
+                                             NSDictionary *model = arr[f];
+                                             MyLog(@"%@",model[@"gdsPrice"]);
+                                             if ([model[@"gdsPrice"] isEqualToString:title]) {
+                                                 if(i == 0){
+                                                     isFound = YES;
+                                                     break;
+                                                 }
+                                                 else{
+                                                     i--;
+                                                 }
                                              }
                                          }
-                                     }
-                                     if(isFound){
-                                         NSDictionary *model = arr[f];
-                                         NSDictionary *info = @{@"type":@"color",
-                                                                @"param":model
-                                                                };
-                                         [[NSNotificationCenter defaultCenter] postNotificationName:kShopPricListClickItemNotification object:weakSelf userInfo:info];
-                                     }
-                                 }];
-            
-            
+                                         if(isFound){
+                                             NSDictionary *model = arr[f];
+                                             MyLog(@"%@",model[@"skuColor"]);
+                                             NSDictionary *info = @{@"type":@"color",
+                                                                    @"param":model
+                                                                    };
+                                             [[NSNotificationCenter defaultCenter] postNotificationName:kParityListClickItemNotification object:weakSelf userInfo:info];
+                                         }
+                                     }];
+                
+                
+            }
         }
     }
     
@@ -269,7 +279,7 @@
     NSDictionary *info = @{@"type":@"active",
                            @"param":dic
                            };
-    [[NSNotificationCenter defaultCenter] postNotificationName:kShopPricListClickItemNotification object:self userInfo:info];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kParityListClickItemNotification object:self userInfo:info];
 }
 
 - (void)clickModelBtn:(UIButton *)sender {
@@ -277,7 +287,7 @@
     NSDictionary *info = @{@"type":@"model",
                            @"param":dic
                            };
-    [[NSNotificationCenter defaultCenter] postNotificationName:kShopPricListClickItemNotification object:self userInfo:info];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kParityListClickItemNotification object:self userInfo:info];
 }
 
 

@@ -9,6 +9,8 @@
 #import "ParityListVC.h"
 #import "MoreProductVC.h"
 #import "ProductsListVC.h"
+#import "DragVC.h"
+#import "LongPressChangeVC.h"
 
 NSString *const kParityListVCProductName = @"brandName";
 NSString *const kParityListVCShopName = @"shopResult";
@@ -23,13 +25,17 @@ NSString *const kParityListVCItemCount = @"kParityListVCItemCount";
 
 @implementation ParityListVC
 
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.extendedLayoutIncludesOpaqueBars = NO;
     self.modalPresentationCapturesStatusBarAppearance = NO;
-    
+   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpAction:) name:kParityListClickItemNotification object:nil];
     self.view.backgroundColor = [ALHelper createColorByHex:@"#F2F3F7"];
     [self layoutPageView];
     
@@ -92,6 +98,36 @@ NSString *const kParityListVCItemCount = @"kParityListVCItemCount";
  
 }
 
+
+#pragma mark - Notification
+- (void)jumpAction:(NSNotification *)notification {
+    //    NSLog(@"seg2 to seg1 :%@",notification.object);
+    //    NSLog(@"info is %@", notification.userInfo);
+    NSString *type = notification.userInfo[@"type"];
+    NSDictionary *paramDic = notification.userInfo[@"param"];
+    
+    if ([type isEqualToString:@"active"]) {
+        MyLog(@"jump to %@",paramDic);
+        DragVC *dragVC = [[DragVC alloc] init];
+        [self.navigationController pushViewController:dragVC animated:YES];
+    }
+    else if ([type isEqualToString:@"model"]){
+        
+        MyLog(@"jump to %@",paramDic);
+        LongPressChangeVC *longPressChangVC = [[LongPressChangeVC alloc] init];
+        [longPressChangVC generateData:nil];
+        longPressChangVC.title = @"长按删除及移动";
+        [self.navigationController pushViewController:longPressChangVC animated:YES];
+    }
+    else if ([type isEqualToString:@"color"]){
+        
+        MyLog(@"jump to %@",paramDic);
+        LongPressChangeVC *longPressChangVC = [[LongPressChangeVC alloc] init];
+        [longPressChangVC generateData:nil];
+        longPressChangVC.title = @"长按删除及移动";
+        [self.navigationController pushViewController:longPressChangVC animated:YES];
+    }
+}
 
 #pragma mark - Helper methods
 
