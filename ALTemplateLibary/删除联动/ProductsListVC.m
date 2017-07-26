@@ -44,7 +44,8 @@ typedef NS_ENUM(NSUInteger, XWDragCellCollectionViewScrollDirection) {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor lightGrayColor];
+    
+    self.view.backgroundColor = [ALHelper createColorByHex:@"#F2F3F7"];
     [self layoutPageView];
     [self addRecognize];
 //    [self addLongGesture];
@@ -73,8 +74,8 @@ typedef NS_ENUM(NSUInteger, XWDragCellCollectionViewScrollDirection) {
 
 
 -(void)generateData:(id)data {
-    NSMutableArray *itemArrary =(NSMutableArray*)data ;
-    self.itemArrary = [itemArrary mutableCopy];
+//    NSMutableArray *itemArrary =(NSMutableArray*)data ;
+    self.itemArrary = (NSMutableArray*)data;
 }
 
 #pragma mark - Notification
@@ -123,9 +124,10 @@ typedef NS_ENUM(NSUInteger, XWDragCellCollectionViewScrollDirection) {
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDictionary *dic = self.itemArrary[indexPath.row];
-    NSInteger count = [dic[kParityListVCItemCount] integerValue];
+    NSArray *arr = dic[kParityListVCShopName];
+    NSInteger count = arr.count ;
     
-    CGFloat height = 130.f +40.f *count;
+    CGFloat height = 80.f +40.f *count;
 //    MyLog(@"%f",height);
     return  height;
 }
@@ -149,6 +151,14 @@ typedef NS_ENUM(NSUInteger, XWDragCellCollectionViewScrollDirection) {
 -(void)resetLongPressGesture {
     self.resetGesture = YES;
 }
+
+#pragma mark - 
+-(void)refrashHeight:(ProductTVCell *)cell {
+    
+    NSIndexPath *indexPath=[self.productsTableView indexPathForCell:cell];
+    [self.productsTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+}
+
 
 
 - (void)xwp_setScrollDirection{
@@ -406,7 +416,8 @@ typedef NS_ENUM(NSUInteger, XWDragCellCollectionViewScrollDirection) {
         _productsTableView = [[UITableView alloc] init];
         _productsTableView.delegate = self;
         _productsTableView.dataSource = self;
-        _productsTableView.backgroundColor = [UIColor lightGrayColor];
+        _productsTableView.backgroundColor = [ALHelper createColorByHex:@"#F2F3F7"];
+        _productsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 	}
 	return _productsTableView;
 }

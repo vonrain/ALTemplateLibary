@@ -37,12 +37,15 @@
 		C787A4A11F0E3FC4006E2D0A /* DragUITableViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C787A49B1F0E3FC4006E2D0A /* DragUITableViewVC.m */; };
 		C787A4A21F0E3FC4006E2D0A /* TableViewColumnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C787A49D1F0E3FC4006E2D0A /* TableViewColumnCell.m */; };
 		C7959A1A1F185931003D3519 /* ALHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C7959A191F185931003D3519 /* ALHelper.m */; };
+		C79EC4EB1F26DC37001B9293 /* 关闭.png in Resources */ = {isa = PBXBuildFile; fileRef = C79EC4E91F26DC37001B9293 /* 关闭.png */; };
+		C79EC4EC1F26DC37001B9293 /* 添加.png in Resources */ = {isa = PBXBuildFile; fileRef = C79EC4EA1F26DC37001B9293 /* 添加.png */; };
 		C7F4D4141F0F31B00056561A /* ParityListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F4D4131F0F31B00056561A /* ParityListVC.m */; };
 		C7F4D4171F0F68010056561A /* MoreProductsView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F4D4161F0F68010056561A /* MoreProductsView.m */; };
 		C7F4D41A1F131A060056561A /* MoreProductVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F4D4191F131A060056561A /* MoreProductVC.m */; };
 		C7F4D41D1F131A5E0056561A /* ProductsListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F4D41C1F131A5E0056561A /* ProductsListVC.m */; };
 		C7F4D4201F13611F0056561A /* MoreProductCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F4D41F1F13611F0056561A /* MoreProductCollectionCell.m */; };
 		C7F4D4231F137D1F0056561A /* ProductTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F4D4221F137D1F0056561A /* ProductTVCell.m */; };
+		C7F622611F281F12003093F3 /* cg0092_te.json in Resources */ = {isa = PBXBuildFile; fileRef = C7F622601F281F12003093F3 /* cg0092_te.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +125,8 @@
 		C787A4A31F0F1089006E2D0A /* ALTemplateLibary-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ALTemplateLibary-Prefix.pch"; sourceTree = "<group>"; };
 		C7959A181F185931003D3519 /* ALHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALHelper.h; sourceTree = "<group>"; };
 		C7959A191F185931003D3519 /* ALHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALHelper.m; sourceTree = "<group>"; };
+		C79EC4E91F26DC37001B9293 /* 关闭.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "关闭.png"; sourceTree = "<group>"; };
+		C79EC4EA1F26DC37001B9293 /* 添加.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "添加.png"; sourceTree = "<group>"; };
 		C7F4D4121F0F31B00056561A /* ParityListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParityListVC.h; sourceTree = "<group>"; };
 		C7F4D4131F0F31B00056561A /* ParityListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParityListVC.m; sourceTree = "<group>"; };
 		C7F4D4151F0F68010056561A /* MoreProductsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreProductsView.h; sourceTree = "<group>"; };
@@ -134,6 +139,7 @@
 		C7F4D41F1F13611F0056561A /* MoreProductCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreProductCollectionCell.m; sourceTree = "<group>"; };
 		C7F4D4211F137D1F0056561A /* ProductTVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductTVCell.h; sourceTree = "<group>"; };
 		C7F4D4221F137D1F0056561A /* ProductTVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductTVCell.m; sourceTree = "<group>"; };
+		C7F622601F281F12003093F3 /* cg0092_te.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cg0092_te.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,7 +185,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C71CECE01F1C60E900AAFD38 /* 搜索布局 */ = {
+		C71CECE01F1C60E900AAFD38 /* 店铺比价单 */ = {
 			isa = PBXGroup;
 			children = (
 				C71CECE11F1C8BF400AAFD38 /* ShopPricListVC.h */,
@@ -191,6 +197,7 @@
 				C71CECE41F1C9A1000AAFD38 /* HeadTipsView.h */,
 				C71CECE51F1C9A1000AAFD38 /* HeadTipsView.m */,
 			);
+			name = "店铺比价单";
 			path = "搜索布局";
 			sourceTree = "<group>";
 		};
@@ -199,6 +206,7 @@
 			children = (
 				C72EB5E11F185B850069AB83 /* 删除联动.json */,
 				C74B00C81F1F3232000AF7B4 /* cg0091_te.json */,
+				C7F622601F281F12003093F3 /* cg0092_te.json */,
 				C756423A1F25D2E800219C39 /* cg0095_te.json */,
 			);
 			path = StaticData;
@@ -225,6 +233,8 @@
 			isa = PBXGroup;
 			children = (
 				C75642331F259EB700219C39 /* 排序三角.png */,
+				C79EC4E91F26DC37001B9293 /* 关闭.png */,
+				C79EC4EA1F26DC37001B9293 /* 添加.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -262,8 +272,8 @@
 				C7959A171F185931003D3519 /* 工具 */,
 				C787A4901F0E3FC4006E2D0A /* Collection横向Tableview单元格 */,
 				C787A4991F0E3FC4006E2D0A /* tableview横向tableview单元格 */,
-				C7F4D4111F0F30A40056561A /* 删除联动 */,
-				C71CECE01F1C60E900AAFD38 /* 搜索布局 */,
+				C7F4D4111F0F30A40056561A /* 比价单 */,
+				C71CECE01F1C60E900AAFD38 /* 店铺比价单 */,
 				C74B00CD1F244293000AF7B4 /* 商品比价 */,
 				C787A4621F0E37F4006E2D0A /* Assets.xcassets */,
 				C787A4671F0E37F4006E2D0A /* Info.plist */,
@@ -352,7 +362,7 @@
 			path = "工具";
 			sourceTree = "<group>";
 		};
-		C7F4D4111F0F30A40056561A /* 删除联动 */ = {
+		C7F4D4111F0F30A40056561A /* 比价单 */ = {
 			isa = PBXGroup;
 			children = (
 				C7F4D4121F0F31B00056561A /* ParityListVC.h */,
@@ -372,6 +382,7 @@
 				C7F4D4151F0F68010056561A /* MoreProductsView.h */,
 				C7F4D4161F0F68010056561A /* MoreProductsView.m */,
 			);
+			name = "比价单";
 			path = "删除联动";
 			sourceTree = "<group>";
 		};
@@ -482,8 +493,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C756423B1F25D2E800219C39 /* cg0095_te.json in Resources */,
+				C79EC4EB1F26DC37001B9293 /* 关闭.png in Resources */,
+				C7F622611F281F12003093F3 /* cg0092_te.json in Resources */,
 				C787A4631F0E37F4006E2D0A /* Assets.xcassets in Resources */,
 				C72EB5E21F185B850069AB83 /* 删除联动.json in Resources */,
+				C79EC4EC1F26DC37001B9293 /* 添加.png in Resources */,
 				C74B00C91F1F3232000AF7B4 /* cg0091_te.json in Resources */,
 				C75642341F259EB700219C39 /* 排序三角.png in Resources */,
 				C7145A321F0F1588007DEE24 /* Default-568h@2x.png in Resources */,

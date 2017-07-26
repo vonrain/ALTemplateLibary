@@ -17,6 +17,8 @@
 
 #define kProductItemShopNameWidth 80
 #define kProductsModelLabelWidth 80
+#define kActiveViewWidth 60
+#define kPaddingWidth 5 
 #define MainHeight  [[UIScreen mainScreen] bounds].size.height
 #define MainWidth   [[UIScreen mainScreen] bounds].size.width
 

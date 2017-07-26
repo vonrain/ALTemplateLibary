@@ -10,8 +10,8 @@
 #import "MoreProductVC.h"
 #import "ProductsListVC.h"
 
-NSString *const kParityListVCProductName = @"kParityListVCProductName";
-NSString *const kParityListVCShopName = @"kParityListVCShopName";
+NSString *const kParityListVCProductName = @"brandName";
+NSString *const kParityListVCShopName = @"shopResult";
 NSString *const kParityListVCItemCount = @"kParityListVCItemCount";
 
 @interface ParityListVC ()
@@ -30,7 +30,7 @@ NSString *const kParityListVCItemCount = @"kParityListVCItemCount";
     self.extendedLayoutIncludesOpaqueBars = NO;
     self.modalPresentationCapturesStatusBarAppearance = NO;
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [ALHelper createColorByHex:@"#F2F3F7"];
     [self layoutPageView];
     
     // Do any additional setup after loading the view, typically from a nib.
@@ -44,7 +44,7 @@ NSString *const kParityListVCItemCount = @"kParityListVCItemCount";
 
 - (void)layoutPageView {
     
-    self.view.backgroundColor = [UIColor grayColor];
+//    self.view.backgroundColor = [UIColor grayColor];
     [self.view addSubview:self.moreProductVC.view];
     [self.view addSubview:self.productsListVC.view];
     
@@ -55,34 +55,38 @@ NSString *const kParityListVCItemCount = @"kParityListVCItemCount";
     }];
     
     [self.productsListVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.left.right.mas_equalTo(self.view);
+        make.left.mas_equalTo(self.view).offset(5);
+        make.right.mas_equalTo(self.view).offset(-5);
         make.top.mas_equalTo(self.moreProductVC.view.mas_bottom);
+        make.bottom.mas_equalTo(self.view);
     }];
 }
 
 
 -(void)generateData:(id)data {
     
-    NSMutableArray *itemArrary = [NSMutableArray new];
-    for (int i = 0; i < 8; i++) {
-        NSString *item = [NSString stringWithFormat:@"华为p%d",i];
-        NSMutableArray *shopItems = [NSMutableArray new];
-        int j = 0;
-        for (j = 0; j<i+1; j++) {
-            NSString *shop = [NSString stringWithFormat:@"迈腾通讯%d",j];
-            [shopItems addObject:shop];
-        }
-        
-        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
-                             item,kParityListVCProductName,
-                             shopItems,kParityListVCShopName,
-                             @(j),kParityListVCItemCount,
-                             nil];
-        
-        [itemArrary addObject:dic];
-    }
+//    NSMutableArray *itemArrary = [NSMutableArray new];
+//    for (int i = 0; i < 8; i++) {
+//        NSString *item = [NSString stringWithFormat:@"华为p%d",i];
+//        NSMutableArray *shopItems = [NSMutableArray new];
+//        int j = 0;
+//        for (j = 0; j<i+1; j++) {
+//            NSString *shop = [NSString stringWithFormat:@"迈腾通讯%d",j];
+//            [shopItems addObject:shop];
+//        }
+//        
+//        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
+//                             item,kParityListVCProductName,
+//                             shopItems,kParityListVCShopName,
+//                             @(j),kParityListVCItemCount,
+//                             nil];
+//        
+//        [itemArrary addObject:dic];
+//    }
     
-//    NSMutableArray *itemArrary = [ALHelper getJsonDataJsonname:@"删除联动.json"];
+    NSDictionary *itemDic = [ALHelper getJsonDataJsonname:@"cg0092_te.json"];
+    NSMutableArray *itemArrary = itemDic[@"brandResult"];
+    
     [self.productsListVC generateData:itemArrary];
     [self.moreProductVC generateData:itemArrary];
  

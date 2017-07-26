@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+@class ProductTVCell;
 @protocol ProductCellDelegate <NSObject>
 
 - (void)didDelete:(UITableViewCell *)cell;
-
 @optional
 - (void)resetLongPressGesture;
+
+-(void)refrashHeight:(ProductTVCell *)cell;
 
 @end
 

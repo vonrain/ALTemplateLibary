@@ -188,7 +188,6 @@ static NSString *BrandPriceListCellId = @"BrandPriceListCellId";
 }
 
 #pragma mark - 
-
 -(void)refrashHeight:(BrandPriceListCell *)cell {
     
     

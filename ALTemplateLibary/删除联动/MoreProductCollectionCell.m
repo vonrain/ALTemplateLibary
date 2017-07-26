@@ -21,12 +21,19 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self layoutPageView];
+        self.backgroundColor = [UIColor whiteColor];
+        self.layer.cornerRadius = 5;
+        self.layer.masksToBounds = NO;
+        self.layer.shadowOpacity = 0.15f;
+        self.layer.shadowRadius = 5.0f;
+        
     }
     return self;
 }
 
 
 -(void)layoutPageView {
+    
     [self.contentView addSubview:self.title];
     [self.contentView addSubview:self.closeBtn];
     
@@ -37,7 +44,7 @@
     
     [self.closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(10, 20));
-        make.right.centerY.mas_equalTo(self.contentView);
+        make.right.centerY.mas_equalTo(self.contentView).offset(-1);
     }];
 }
 
@@ -59,15 +66,17 @@
 - (UILabel *)title {
 	if (_title == nil) {
         _title = [[UILabel alloc] init];
-        _title.text = @"华为p10";
+        _title.font = [UIFont systemFontOfSize:9];
+        _title.textAlignment = NSTextAlignmentCenter;
 	}
 	return _title;
 }
 - (UIButton *)closeBtn {
 	if (_closeBtn == nil) {
         _closeBtn = [[UIButton alloc] init];
-        _closeBtn.backgroundColor = [UIColor redColor];
-        _closeBtn.titleLabel.text = @"-";
+//        _closeBtn.backgroundColor = [UIColor redColor];
+        [_closeBtn setImage:[UIImage imageNamed:@"关闭"] forState:UIControlStateNormal];
+        [_closeBtn setImageEdgeInsets:UIEdgeInsetsMake(8, 0, 6, 4)];
         [_closeBtn addTarget:self action:@selector(delCell:) forControlEvents:UIControlEventTouchUpInside];
 	}
 	return _closeBtn;

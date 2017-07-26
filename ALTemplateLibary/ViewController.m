@@ -48,7 +48,7 @@
     
     ParityListVC *parityListVC = [[ParityListVC alloc] init];
     [parityListVC generateData:nil];
-    parityListVC.title = @"删除联动";
+    parityListVC.title = @"比价单";
     
     ShopPricListVC *shopPriceVC = [[ShopPricListVC alloc] init];
     shopPriceVC.title = @"店铺比价单";

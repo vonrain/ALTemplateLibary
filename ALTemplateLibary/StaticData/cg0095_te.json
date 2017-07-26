@@ -7,6 +7,7 @@
   "colorList" : [
     {
       "skuColor" : "金色"
+      "skuId" : "金色"
     },
     {
       "skuColor" : "银色"
@@ -48,7 +49,7 @@
     {
       "gdsId" : "123",
       "skuId" : "456",
-      "shopId" : "1122",
+      "shopId" : "212312",
       "spuType" : "2222",
       "modelName" : "G7 Plus",
       "systemStandard" : "4G全网通",
@@ -61,7 +62,7 @@
   "activityList" : [
         {
           "brandName" : "苹果",
-          "shopId" : "11123",
+          "shopId" : "1122",
           "activityId" : "活动id",
           "activityName" : "活动名称",
           "skuId" : "单品ID",
@@ -69,7 +70,7 @@
         },
         {
           "brandName" : "苹果",
-          "shopId" : "11123",
+          "shopId" : "1122",
           "activityId" : "活动id",
           "activityName" : "活动名称",
           "skuId" : "单品ID",

@@ -15,7 +15,7 @@
 @property (nonatomic, strong) UITableView *productTableView;
 @property (nonatomic, strong) UIView *maskView;
 @property (nonatomic, strong) ProductHeadView *headView;
-@property (nonatomic, strong) UIView *footView;
+@property (nonatomic, strong) UIButton *footViewBtn;
 @property (nonatomic, strong) UIButton *moreBtn;
 @property (nonatomic, strong) UIButton *deleteBtn;
 @property (nonatomic, strong) NSMutableArray *itemsArrary;
@@ -29,6 +29,8 @@
     if (self) {
         // Initialization code
 //        [self layoutPageView];
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.contentView.backgroundColor = [ALHelper createColorByHex:@"#F2F3F7"];
     }
     return self;
 }
@@ -41,7 +43,8 @@
     [self.detialView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self.detialView addSubview:self.productTableView];
     
-    UIEdgeInsets padding = UIEdgeInsetsMake(10, 10, 10, 10);
+//    UIEdgeInsets padding = UIEdgeInsetsMake(0, 10, 10, 10);
+    UIEdgeInsets padding = UIEdgeInsetsMake(0, 0, 0, 0);
     [self.detialView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self.contentView).insets(padding);
     }];
@@ -67,7 +70,6 @@
     NSMutableDictionary *dic = (NSMutableDictionary *)data;
     
     self.productName = dic[kParityListVCProductName];
-//    self.itemsArrary = [dic[kParityListVCShopName] mutableCopy];
     self.itemsArrary = dic[kParityListVCShopName];
     
     [self.headView generateData:self.productName];
@@ -103,6 +105,19 @@
     }
 }
 
+#pragma mark - Event
+- (void)moreProducts:(UIButton *)sender {
+    
+    NSArray *arr = @[@"长期",@"广告",@"颜色"];
+    [self.itemsArrary addObjectsFromArray:arr];
+    [self.productTableView reloadData];
+    
+    if ([self.delegate respondsToSelector:@selector(refrashHeight:)]) {
+        [self.delegate refrashHeight:self];
+    }
+}
+
+
 #pragma mark - UITableViewDataSource Methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -134,7 +149,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 40;
+    return 80;
 }
 
 -(void)addTarget:(id)target action:(SEL)action {
@@ -157,25 +172,39 @@
 	if (_detialView == nil) {
         _detialView = [[UIView alloc] init];
         _detialView.backgroundColor=[UIColor clearColor];
-        _detialView.layer.borderColor=[UIColor grayColor].CGColor;
-        _detialView.layer.borderWidth=0.5;
-        _detialView.layer.cornerRadius=10;
+//        _detialView.layer.borderColor=[UIColor grayColor].CGColor;
+//        _detialView.layer.borderWidth=0.5;
+//        _detialView.layer.cornerRadius=10;
 	}
 	return _detialView;
 }
 
+//- (UITableView *)productTableView {
+//	if (_productTableView == nil) {
+//        _productTableView = [[UITableView alloc] init];
+//        _productTableView.delegate = self;
+//        _productTableView.dataSource = self;
+//        _productTableView.scrollEnabled = NO;
+//        _productTableView.tableHeaderView = self.headView;
+//        _productTableView.tableFooterView = self.footViewBtn;
+//        
+//	}
+//	return _productTableView;
+//}
 - (UITableView *)productTableView {
-	if (_productTableView == nil) {
+    if (_productTableView == nil) {
         _productTableView = [[UITableView alloc] init];
+        _productTableView.backgroundColor = [UIColor clearColor];
         _productTableView.delegate = self;
         _productTableView.dataSource = self;
         _productTableView.scrollEnabled = NO;
         _productTableView.tableHeaderView = self.headView;
-        _productTableView.tableFooterView = self.footView;
-        
-	}
-	return _productTableView;
+        _productTableView.tableFooterView = self.footViewBtn;
+        _productTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    }
+    return _productTableView;
 }
+
 
 - (UIView *)maskView {
     if (_maskView == nil) {
@@ -210,19 +239,23 @@
 
 - (ProductHeadView *)headView {
 	if (_headView == nil) {
-        _headView = [[ProductHeadView alloc] initWithFrame:CGRectMake(0, 0, MainWidth-20, 60)];
+        _headView = [[ProductHeadView alloc] initWithFrame:CGRectMake(0, 0, MainWidth-20, 44)];
 	}
 	return _headView;
 }
-- (UIView *)footView {
-	if (_footView == nil) {
-        _footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MainWidth-20, 20)];
-        [_footView addSubview:self.moreBtn];
-        _footView.backgroundColor = [UIColor yellowColor];
-        
-	}
-	return _footView;
+
+- (UIButton *)footViewBtn {
+    if (_footViewBtn == nil) {
+        _footViewBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, MainWidth-20, 30)];
+        _footViewBtn.backgroundColor = [UIColor whiteColor];
+        _footViewBtn.titleLabel.font = [UIFont systemFontOfSize:11];
+        [_footViewBtn setTitle:@"更多" forState:UIControlStateNormal];
+        [_footViewBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        [_footViewBtn addTarget:self action:@selector(moreProducts:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _footViewBtn;
 }
+
 - (UIButton *)moreBtn {
 	if (_moreBtn == nil) {
         _moreBtn = [[UIButton alloc] init];

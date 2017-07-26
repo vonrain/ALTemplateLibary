@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) UIButton *addBtn;
+@property (nonatomic, strong) UILabel  *addNameLabel;
 
 @property (nonatomic, strong) NSMutableArray *collectionCellItemArrary;
 
@@ -43,6 +44,7 @@
     
     [self.view addSubview:self.collectionView];
     [self.view addSubview:self.addBtn];
+    [self.view addSubview:self.addNameLabel];
     
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.bottom.mas_equalTo(self.view);
@@ -51,7 +53,14 @@
     
     [self.addBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(40, 40));
-        make.right.centerY.mas_equalTo(self.view);
+        make.right.mas_equalTo(self.view);
+        make.centerY.mas_equalTo(self.view).offset(-20);
+    }];
+    
+    [self.addNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(40, 15));
+        make.top.mas_equalTo(self.addBtn.mas_bottom);
+        make.centerX.mas_equalTo(self.addBtn);
     }];
 }
 
@@ -131,7 +140,7 @@
     
     cell.delegate = self;
     [cell generateData:self.collectionCellItemArrary[indexPath.row]];
-    cell.backgroundColor= [UIColor yellowColor];
+//    cell.backgroundColor= [UIColor yellowColor];
     
     return cell;
 }
@@ -144,7 +153,7 @@
         layout.itemSize = CGSizeMake(80, 20);
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         //设置滚动方向的间距
-        layout.minimumLineSpacing = 10;
+        layout.minimumLineSpacing = 4;
         //设置上方的反方向
         layout.minimumInteritemSpacing = 5;
         //设置collectionView整体的上下左右之间的间距
@@ -152,7 +161,7 @@
         
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, MainWidth,MainHeight ) collectionViewLayout:layout];
-        _collectionView.backgroundColor = [UIColor greenColor];
+        _collectionView.backgroundColor = [ALHelper createColorByHex:@"#F2F3F7"];
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.scrollEnabled = YES;
         _collectionView.delegate = self;
@@ -165,10 +174,23 @@
 - (UIButton *)addBtn {
 	if (_addBtn == nil) {
         _addBtn = [[UIButton alloc] init];
-        _addBtn.backgroundColor = [UIColor orangeColor];
+//        _addBtn.backgroundColor = [UIColor orangeColor];
+        [_addBtn setBackgroundImage:[UIImage imageNamed:@"添加"] forState:UIControlStateNormal];
         [_addBtn addTarget:self action:@selector(addClick:) forControlEvents:UIControlEventTouchUpInside];
 	}
 	return _addBtn;
+}
+
+
+- (UILabel *)addNameLabel {
+	if (_addNameLabel == nil) {
+        _addNameLabel = [[UILabel alloc] init];
+        _addNameLabel.textColor = [UIColor orangeColor];
+        _addNameLabel.textAlignment = NSTextAlignmentCenter;
+        _addNameLabel.font = [UIFont systemFontOfSize:9];
+        _addNameLabel.text = @"更多机型";
+	}
+	return _addNameLabel;
 }
 
 @end

@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) UILabel *productNameLabel;
 @property (nonatomic, strong) UILabel *leftLabel;
+@property (nonatomic, strong) UILabel *middleLabel;
 @property (nonatomic, strong) UILabel *rightLabel;
 
 @end
@@ -42,6 +43,7 @@
 - (void)layoutPageView{
     [self addSubview:self.productNameLabel];
     [self addSubview:self.leftLabel];
+    [self addSubview:self.middleLabel];
     [self addSubview:self.rightLabel];
     
     [self.productNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -51,16 +53,22 @@
     
     [self.leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.left.mas_equalTo(self);
-        make.height.mas_equalTo(20);
+        make.height.mas_equalTo(15);
         make.width.mas_equalTo(kProductItemShopNameWidth);
+    }];
+    
+    [self.middleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(self);
+        make.top.mas_equalTo(self.leftLabel);
+        make.left.mas_equalTo(self.leftLabel.mas_right).offset(1);
+        make.right.mas_equalTo(self.rightLabel.mas_left).offset(-1).priority(500);
     }];
     
     [self.rightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.right.mas_equalTo(self);
         make.top.mas_equalTo(self.leftLabel);
-        make.left.mas_equalTo(self.leftLabel.mas_right).offset(1).priority(900);
+        make.width.mas_equalTo(kActiveViewWidth);
     }];
-    
 }
 
 #pragma mark - Getter && Setter
@@ -78,6 +86,7 @@
 	if (_leftLabel == nil) {
         _leftLabel = [[UILabel alloc] init];
         _leftLabel.text = @"店铺";
+        _leftLabel.font = [UIFont systemFontOfSize:11];
         _leftLabel.textColor = [UIColor whiteColor];
         _leftLabel.textAlignment = NSTextAlignmentCenter;
         _leftLabel.backgroundColor = [UIColor orangeColor];
@@ -85,6 +94,14 @@
 	return _leftLabel;
 }
 
+
+- (UILabel *)middleLabel {
+	if (_middleLabel == nil) {
+        _middleLabel = [[UILabel alloc] init];
+        _middleLabel.backgroundColor = [UIColor orangeColor];
+	}
+	return _middleLabel;
+}
 - (UILabel *)rightLabel {
 	if (_rightLabel == nil) {
         _rightLabel = [[UILabel alloc] init];
