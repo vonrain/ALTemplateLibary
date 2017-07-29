@@ -29,6 +29,12 @@
 @property (nonatomic, strong) NSArray *activeArr;
 @property (nonatomic, strong) NSDictionary *brandItemDic;
 
+@property (nonatomic, assign) long lowestPrice;
+@property (nonatomic, assign) NSRange lowestPriceRange;
+@property (nonatomic, assign) BOOL isLowestPrice;
+@property (nonatomic, assign) BOOL isLowPriceFirstPlace;
+@property (nonatomic, assign) BOOL isLayoutLowPrice;
+
 @end
 
 @implementation ProductItemCell
@@ -46,6 +52,8 @@
 
 - (void)layoutPageView {
     
+    [self.activityView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self.colorView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self.shopNameView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self.detialView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
@@ -84,6 +92,33 @@
             make.top.bottom.mas_equalTo(self.detialView);
             make.width.mas_equalTo(kColorItemWidth);
     }];
+    
+    // 单独处理下颜色标签
+    [self layoutColorLabelView];
+    
+    [self.activityView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.right.bottom.mas_equalTo(self.detialView);
+        make.width.mas_equalTo(kActiveViewWidth);
+    }];
+    
+    [self.shopName mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(self.shopNameView);
+    }];
+    
+    [self.topBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(15, 15));
+        make.top.right.mas_equalTo(self.shopNameView);
+    }];
+    
+    // 活动标签布局
+    [self layoutActiveView];
+}
+
+
+
+- (void)layoutColorLabelView {
+    
+    
     // 制式颜色标签表
     CGFloat modelPadding = 0;
     for (int i = 0; i < self.modelsArray.count; i++) {
@@ -102,23 +137,28 @@
             make.width.mas_equalTo(kColorItemWidth -10);
         }];
         modelPadding += colorItemHeight;
+        
+        if (self.isLowPriceFirstPlace && !self.isLayoutLowPrice) {
+            NSRange ra = self.lowestPriceRange;
+            CGRect rect = [self boundingRectForCharacterRange:ra AttributedString:attributedText];
+            UILabel *lowPrice = [self createLowPriceLabel];
+            [colorPriceLabel addSubview:lowPrice];
+            
+            [lowPrice mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(7, 6));
+                make.top.mas_equalTo(colorPriceLabel).offset(rect.origin.y);
+                make.left.mas_equalTo(colorPriceLabel).offset(rect.origin.x+rect.size.width);
+            }];
+            
+            self.isLayoutLowPrice = YES;
+            MyLog(@"goodPrice Rect is %@", NSStringFromCGRect(rect));
+            
+        }
     }
     
-    [self.activityView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.right.bottom.mas_equalTo(self.detialView);
-        make.width.mas_equalTo(kActiveViewWidth);
-    }];
-    
-    [self.shopName mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(self.shopNameView);
-    }];
-    
-    [self.topBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(15, 15));
-        make.top.right.mas_equalTo(self.shopNameView);
-    }];
-    
-    
+}
+
+- (void)layoutActiveView {
     
     CGFloat pointY = 2;
     for (int i = 0; i < self.activeArr.count; i++) {
@@ -141,11 +181,7 @@
         [btn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
         btn.tag = 1000 + i;
     }
-}
-
-- (void)layoutDetialView {
-    
-//    [self.detialView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    //    [self.detialView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
 }
 
@@ -165,10 +201,39 @@
     
     self.modelsArray = dic[@"modelInfoList"];
     self.activeArr = dic[@"activityList"];
+    
+    // 获取最低价位置
+    self.lowestPrice = [self whoIslowestPrice];
+    
+    self.isLowestPrice = NO;
+    self.isLowPriceFirstPlace = NO;
+    self.isLayoutLowPrice = NO;
+    
     [self layoutPageView];
     
 }
 
+-(long) whoIslowestPrice {
+     long lowest = 900000000;
+    for (int i = 0; i < self.modelsArray.count; i++) {
+        
+        NSDictionary *modelDic = self.modelsArray[i];
+        
+        NSMutableString *str = [NSMutableString new];
+        [str appendFormat:@"%@ %@ ",modelDic[@"systemStandard"],modelDic[@"memory"]];
+        NSArray *colorsArrary = modelDic[@"skuInfoList"];
+        
+        for (int i = 0; i < colorsArrary.count; i++) {
+            NSDictionary *item = colorsArrary[i];
+            long current = [[item[@"gdsPrice"] stringValue] intValue];
+            lowest = lowest < current ? lowest : current;
+        }
+        
+    }
+    
+    MyLog(@"lowest :%ld",lowest);
+    return lowest;
+}
 
 -(void)addTarget:(id)target action:(SEL)action {
     //    [self.rightButton addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
@@ -181,6 +246,26 @@
     }
 }
 
+#pragma mark - Customer Method
+
+- (CGRect)boundingRectForCharacterRange:(NSRange)range AttributedString:(NSAttributedString *)attributedString
+{
+    NSTextStorage *textStorage = [[NSTextStorage alloc] initWithAttributedString:attributedString];
+    NSLayoutManager *layoutManager = [[NSLayoutManager alloc] init];
+    [textStorage addLayoutManager:layoutManager];
+//    NSTextContainer *textContainer = [[NSTextContainer alloc] initWithSize:[self bounds].size];
+    NSTextContainer *textContainer = [[NSTextContainer alloc] initWithSize:CGSizeMake(kColorItemWidth-10, CGFLOAT_MAX)];
+    
+    textContainer.lineFragmentPadding = 0;
+    [layoutManager addTextContainer:textContainer];
+    
+    NSRange glyphRange;
+    
+    // Convert the range for glyphs.
+    [layoutManager characterRangeForGlyphRange:range actualGlyphRange:&glyphRange];
+    
+    return [layoutManager boundingRectForGlyphRange:glyphRange inTextContainer:textContainer];
+}
 
 - (NSMutableAttributedString *)modelString:(NSDictionary *)modelDic {
 
@@ -221,11 +306,22 @@
         NSDictionary *model = arr[j];
         NSMutableArray *rangeArr = [NSMutableArray new];
         NSString *tee = [[text string] copy];
-        [[tee rangesOfString:model[@"gdsPrice"] options:0 serachRange:NSMakeRange(0, tee.length)]
+        NSString *gdsPrice = [model[@"gdsPrice"] stringValue];
+        
+        if ([gdsPrice intValue] == self.lowestPrice && !self.isLowPriceFirstPlace) {
+            self.isLowestPrice = YES;
+        }
+        
+        [[tee rangesOfString:gdsPrice options:0 serachRange:NSMakeRange(0, tee.length)]
          enumerateObjectsUsingBlock:^(NSValue *obj, NSUInteger idx, BOOL * _Nonnull stop) {
              NSRange ra = [obj rangeValue];
              //             MyLog(@"my range is %@", NSStringFromRange(ra));
              [rangeArr addObject:NSStringFromRange(ra)];
+             if(self.isLowestPrice){
+                 weakSelf.lowestPriceRange = [obj rangeValue];
+                 weakSelf.isLowPriceFirstPlace  = YES;
+                 weakSelf.isLowestPrice = NO;
+             }
          }] ;
         
         
@@ -241,6 +337,7 @@
                                      NSString *title = [text.string substringWithRange:range];
                                      MyLog(@"\n text.string :%@",text.string);
                                      MyLog(@"\n title :%@",title);
+                                     MyLog(@"my Rect is %@", NSStringFromCGRect(rect));
                                      
                                      BOOL isFound = NO;
                                      int i = 0;
@@ -253,7 +350,8 @@
                                      int f = 0;
                                      for (f = 0 ; f < arr.count; f++) {
                                          NSDictionary *model = arr[f];
-                                         if ([model[@"gdsPrice"] isEqualToString:title]) {
+                                         NSString *gdsPrice = [model[@"gdsPrice"] stringValue];
+                                         if ([gdsPrice isEqualToString:title]) {
                                              if(i == 0){
                                                  isFound = YES;
                                                  break;
@@ -328,6 +426,16 @@
     colorPriceLabel.lineBreakMode = NSLineBreakByWordWrapping;
     colorPriceLabel.font = [UIFont systemFontOfSize:9];
     return colorPriceLabel;
+}
+
+- (UILabel *)createLowPriceLabel {
+    UILabel *lowPriceLabel = [[UILabel alloc] init];
+    lowPriceLabel.backgroundColor = [UIColor redColor];
+    lowPriceLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:5];
+    lowPriceLabel.textColor = [UIColor whiteColor];
+    lowPriceLabel.textAlignment = NSTextAlignmentCenter;
+    lowPriceLabel.text = @"低";
+    return lowPriceLabel;
 }
 
 
