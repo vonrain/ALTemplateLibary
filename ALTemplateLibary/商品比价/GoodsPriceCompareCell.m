@@ -8,6 +8,8 @@
 #import "GoodsPriceCompareCell.h"
 #import "YYText.h"
 #import "NSString+Range.h"
+#import "GoodsPriceModel.h"
+
 
 #define kShopNameLabelWidth 60
 @interface GoodsPriceCompareCell ()
@@ -25,6 +27,7 @@
 @property (nonatomic, strong) NSDictionary *brandItemDic;
 
 @property (nonatomic, strong) NSArray *colorArrary;
+@property (nonatomic, strong) NSArray *colorCategoryArrary;
 @end
 
 @implementation GoodsPriceCompareCell
@@ -97,9 +100,34 @@
         make.left.mas_equalTo(self.colorPriceLabel.mas_right).offset(spacing);
     }];
     
-    int btnWidth = (MainWidth-2*kShopNameLabelWidth-12)/self.colorArrary.count;
+    CGFloat pointY = 2;
+    for (int i = 0; i < self.activeArr.count; i++) {
+        NSDictionary *activeItemDic = self.activeArr[i];
+        UIButton *btn = [[UIButton alloc] init];
+        btn.backgroundColor = [UIColor yellowColor];
+        btn.titleLabel.font = [UIFont systemFontOfSize:9];
+        [self.activityView addSubview:btn];
+        
+        [btn mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.activityView).offset(2);
+            make.right.mas_equalTo(self.activityView).offset(-2);
+            make.height.mas_equalTo(18);
+            make.top.mas_equalTo(self.activityView).offset(pointY);
+        }];
+        
+        pointY += 20;
+        ActivityInfo *activeInfo = self.activeArr[i];
+        [btn setTitle:activeInfo.activityName forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
+        btn.tag = 1000 + i;
+    }
+    
+    
+    
+    int btnWidth = (MainWidth-2*kShopNameLabelWidth-12)/self.colorCategoryArrary.count;
     CGFloat pointX = 1;
-    for (int i = 0; i < self.colorArrary.count; i++) {
+    for (int i = 0; i < self.colorCategoryArrary.count; i++) {
         UIButton *btn = [UIButton new];
         btn.titleLabel.font = [UIFont systemFontOfSize:9];
         
@@ -112,23 +140,46 @@
         }];
         
         pointX +=btnWidth;
-        [btn setTitle:self.colorArrary[i] forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
-        //        [btn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
-        btn.tag = 2000 + i;
+        
+        NSString *colorString = self.colorCategoryArrary[i];
+        
+        for (int j = 0; j < self.colorArrary.count; j ++) {
+            
+            ColorPrice *colorPrice = self.colorArrary[j];
+            
+            if ([colorString isEqualToString:colorPrice.skuColor]) {
+                
+                NSString *price = [NSString stringWithFormat:@"%ld", (long)colorPrice.skuPrice.gdsPrice ];
+                [btn setTitle:price forState:UIControlStateNormal];
+                [btn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+                //        [btn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
+                btn.tag = 2000 + i;
+                // 找到首个匹配
+                break;
+            }
+            else {
+                // 当前店铺中没有这种颜色的单品
+                NSString *price = [NSString stringWithFormat:@"--"];
+                [btn setTitle:price forState:UIControlStateNormal];
+                [btn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+            }
+            
+        }
     }
     
 }
 
 - (void)generateData:(id)data {
     
-    NSDictionary *dic = (NSDictionary*)data;
-    self.brandItemDic = dic;
+    NSDictionary *dic = (NSDictionary *)data;
     
-    self.productsModelLabel.text = dic[@"shopName"];
+    ShopGoodsPrice *shopGoodsPrice = dic[@"shopPrice"];
+    self.colorCategoryArrary = dic[@"colorList"];
     
-    self.activeArr = dic[@"activityList"];
-    self.colorArrary = @[@"金色",@"银色",@"黑色",@"灰色",@"月光银"];
+    self.productsModelLabel.text = shopGoodsPrice.shopName;
+//
+    self.activeArr = shopGoodsPrice.activityList;
+    self.colorArrary = shopGoodsPrice.colorPriceList;
     
     [self layoutPageView];
     
@@ -137,11 +188,11 @@
 #pragma mark - EventResponse
 - (void)clickBtn:(UIButton *)sender {
     long index = sender.tag -1000;
-    NSDictionary *dic = self.activeArr[index];
+    ActivityInfo *activityInfo = self.activeArr[index];
     NSDictionary *info = @{@"type":@"active",
-                           @"param":dic
+                           @"param":activityInfo
                            };
-    [[NSNotificationCenter defaultCenter] postNotificationName:kShopPricListClickItemNotification object:self userInfo:info];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kGoodPriceCompareClickItemNotification object:self userInfo:info];
 }
 
 - (void)clickModelBtn:(UIButton *)sender {
@@ -149,7 +200,7 @@
     NSDictionary *info = @{@"type":@"model",
                            @"param":dic
                            };
-    [[NSNotificationCenter defaultCenter] postNotificationName:kShopPricListClickItemNotification object:self userInfo:info];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kGoodPriceCompareClickItemNotification object:self userInfo:info];
 }
 
 

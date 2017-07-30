@@ -76,7 +76,7 @@
         }];
         
         pointX +=btnWidth;
-        btn.colorLabel.text = self.colorArrary[i][@"skuColor"];
+        btn.colorLabel.text = self.colorArrary[i];
         
         [btn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
         btn.tag = 1000 + i;
@@ -86,9 +86,11 @@
 
 - (void)generateData:(id)data{
     
-    self.colorArrary = (NSArray *)data;;
-    self.title.text = @"G7 plus 4G全网通用/16G";//dic[@"time"];
-//    self.colorArrary = @[@"金色",@"银色",@"灰色",@"月光银"];
+    NSDictionary *bandInfo = (NSDictionary *)data;
+    
+    self.colorArrary = bandInfo[@"colorArray"];
+    self.title.text = bandInfo[@"bandTitle"];
+    
     [self layoutPageView];
 }
 

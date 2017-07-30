@@ -10,18 +10,20 @@
 #import "GoodsPriceCompareCell.h"
 #import "HeadTimeView.h"
 #import "ColorSortingView.h"
+#import "GoodsPriceModel.h"
 
 static NSString *GoodsPriceCompareCellId = @"GoodsPriceCompareCellId";
 @interface GoodsPriceCompareVC ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
-//@property (nonatomic, strong) NSMutableArray *dataArray;
-@property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) NSArray *colorArray;
+@property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) HeadTimeView *headTimeView;
-//@property (nonatomic, strong) UIButton *headViewBtn;
 @property (nonatomic, strong) ColorSortingView *colorSortingView;
 @property (nonatomic, strong) UIButton *footViewBtn;
+@property (nonatomic, strong) GoodsPriceModel *goodPriceModel;
+
+@property (nonatomic, strong) NSMutableArray *shopPriceList;
 
 @end
 
@@ -41,9 +43,10 @@ static NSString *GoodsPriceCompareCellId = @"GoodsPriceCompareCellId";
     self.title = @"商品比价";
     self.view.backgroundColor = [ALHelper createColorByHex:@"#F2F3F7"];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpAction:) name:kGoodPriceCompareClickItemNotification object:nil];
+    
     [self generateData:nil];
     [self layoutPageView];
-    [self.headTimeView generateData:nil];
     
 }
 
@@ -52,7 +55,7 @@ static NSString *GoodsPriceCompareCellId = @"GoodsPriceCompareCellId";
     [self.view addSubview:self.tableView];
     
     [self.headTimeView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(MainWidth, 36));
+        make.size.mas_equalTo(CGSizeMake(MainWidth, 30));
         make.top.left.right.mas_equalTo(self.view);
     }];
     
@@ -69,21 +72,53 @@ static NSString *GoodsPriceCompareCellId = @"GoodsPriceCompareCellId";
     
     NSDictionary *dic = [ALHelper getJsonDataJsonname:@"cg0095_te.json"];
     
-    self.dataArray = dic[@"shopInfoList"];
-    self.colorArray = dic[@"colorList"];
-    [self.colorSortingView generateData:self.colorArray];
+    self.goodPriceModel = [GoodsPriceModel yy_modelWithJSON:dic];
+    self.shopPriceList = [ShopGoodsPrice transformGoodsPriceToShopGoodPrice:self.goodPriceModel];
+    self.colorArray = [ShopGoodsPrice colorCategoryList:self.goodPriceModel];
     
-//    self.dataArray = dic[@"shopInfoList"];
-    //    self.dataArray = [self getDataArray];
+    
+    NSString *bandTitle = [NSString stringWithFormat:@"%@ %@/%@",
+                           self.goodPriceModel.modelName,
+                           self.goodPriceModel.systemStandard,
+                           self.goodPriceModel.memory];
+    NSDictionary *bandInfo = @{@"bandTitle":bandTitle,
+                           @"colorArray":self.colorArray};
+    [self.colorSortingView generateData:bandInfo];
+    
+    NSString *lastTime = self.goodPriceModel.quotationUpdateTime;
+    [self.headTimeView generateData:lastTime];
+    
 }
 #pragma mark - Event Response
 - (void)moreProducts:(UIButton *)sender {
     
-    NSDictionary *dic = [ALHelper getJsonDataJsonname:@"cg0091_te.json"];
-    NSArray *arr = dic[@"modelResult"];
-    [self.dataArray addObjectsFromArray:arr];
+    NSDictionary *dic = [ALHelper getJsonDataJsonname:@"cg0095_te.json"];
+    
+    GoodsPriceModel *goodPriceModel = [GoodsPriceModel yy_modelWithJSON:dic];
+    NSMutableArray *shopPriceList = [ShopGoodsPrice transformGoodsPriceToShopGoodPrice:goodPriceModel];
+    
+    [self.shopPriceList addObjectsFromArray:shopPriceList];
     [self.tableView reloadData];
 }
+
+#pragma mark - Notification
+- (void)jumpAction:(NSNotification *)notification {
+    NSString *type = notification.userInfo[@"type"];
+    NSDictionary *paramDic = notification.userInfo[@"param"];
+    
+    if ([type isEqualToString:@"active"]) {
+        MyLog(@"jump to %@",paramDic);
+    }
+    else if ([type isEqualToString:@"model"]){
+        
+        MyLog(@"jump to %@",paramDic);
+    }
+    else if ([type isEqualToString:@"color"]){
+        
+        MyLog(@"jump to %@",paramDic);
+    }
+}
+
 
 #pragma mark - Table view data source
 
@@ -92,7 +127,7 @@ static NSString *GoodsPriceCompareCellId = @"GoodsPriceCompareCellId";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.dataArray.count;
+    return self.shopPriceList.count;
 }
 
 
@@ -106,7 +141,9 @@ static NSString *GoodsPriceCompareCellId = @"GoodsPriceCompareCellId";
         //        cell.contentView.translatesAutoresizingMaskIntoConstraints = NO;
     }
     
-    [cell generateData:self.dataArray[indexPath.row]];
+    NSDictionary *dic = @{@"colorList":self.colorArray,
+                          @"shopPrice":self.shopPriceList[indexPath.row]};
+    [cell generateData:dic];
     return cell;
 }
 

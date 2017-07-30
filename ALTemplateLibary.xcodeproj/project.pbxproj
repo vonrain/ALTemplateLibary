@@ -25,6 +25,7 @@
 		C75642341F259EB700219C39 /* 排序三角.png in Resources */ = {isa = PBXBuildFile; fileRef = C75642331F259EB700219C39 /* 排序三角.png */; };
 		C75642391F25A41000219C39 /* ColorSortingBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = C75642381F25A41000219C39 /* ColorSortingBtn.m */; };
 		C756423B1F25D2E800219C39 /* cg0095_te.json in Resources */ = {isa = PBXBuildFile; fileRef = C756423A1F25D2E800219C39 /* cg0095_te.json */; };
+		C78153251F2CC210009B34EC /* GoodsPriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C78153241F2CC210009B34EC /* GoodsPriceModel.m */; };
 		C787A4581F0E37F4006E2D0A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C787A4571F0E37F4006E2D0A /* main.m */; };
 		C787A45B1F0E37F4006E2D0A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C787A45A1F0E37F4006E2D0A /* AppDelegate.m */; };
 		C787A45E1F0E37F4006E2D0A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C787A45D1F0E37F4006E2D0A /* ViewController.m */; };
@@ -98,6 +99,8 @@
 		C75642371F25A41000219C39 /* ColorSortingBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorSortingBtn.h; sourceTree = "<group>"; };
 		C75642381F25A41000219C39 /* ColorSortingBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorSortingBtn.m; sourceTree = "<group>"; };
 		C756423A1F25D2E800219C39 /* cg0095_te.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cg0095_te.json; sourceTree = "<group>"; };
+		C78153231F2CC210009B34EC /* GoodsPriceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsPriceModel.h; sourceTree = "<group>"; };
+		C78153241F2CC210009B34EC /* GoodsPriceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsPriceModel.m; sourceTree = "<group>"; };
 		C787A4531F0E37F4006E2D0A /* ALTemplateLibary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ALTemplateLibary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C787A4571F0E37F4006E2D0A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C787A4591F0E37F4006E2D0A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -225,6 +228,8 @@
 				C74B00DB1F2579AF000AF7B4 /* ColorSortingView.m */,
 				C75642371F25A41000219C39 /* ColorSortingBtn.h */,
 				C75642381F25A41000219C39 /* ColorSortingBtn.m */,
+				C78153231F2CC210009B34EC /* GoodsPriceModel.h */,
+				C78153241F2CC210009B34EC /* GoodsPriceModel.m */,
 			);
 			path = "商品比价";
 			sourceTree = "<group>";
@@ -585,6 +590,7 @@
 				C7F4D41A1F131A060056561A /* MoreProductVC.m in Sources */,
 				C71CECEF1F1CF61500AAFD38 /* BrandItemCell.m in Sources */,
 				C74B00DC1F2579AF000AF7B4 /* ColorSortingView.m in Sources */,
+				C78153251F2CC210009B34EC /* GoodsPriceModel.m in Sources */,
 				C787A49F1F0E3FC4006E2D0A /* LongPressChangeVC.m in Sources */,
 				C74B00CC1F20AD77000AF7B4 /* NSString+Range.m in Sources */,
 				C7F4D4141F0F31B00056561A /* ParityListVC.m in Sources */,

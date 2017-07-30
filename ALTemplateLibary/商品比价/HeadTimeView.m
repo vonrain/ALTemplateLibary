@@ -35,32 +35,35 @@
     [self addSubview:self.leftBottomLine];
     self.backgroundColor = [UIColor whiteColor];
     
-    [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    int labelWidth = 50;
+    [self.timeNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(labelWidth, 22));
         make.left.mas_equalTo(self).offset(10);
         make.top.mas_equalTo(self);
-        make.height.mas_equalTo(15);
-        make.width.mas_equalTo(MainWidth/2);
+    }];
+    
+    [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.timeNameLabel.mas_right);
+        make.top.height.mas_equalTo(self.timeNameLabel);
+        make.width.mas_equalTo(MainWidth/2 - labelWidth);
     }];
     
     [self.leftBottomLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.timeLabel.mas_bottom);
-        make.left.mas_equalTo(self.timeLabel);
-        make.right.mas_equalTo(self.timeLabel.mas_right);
+        make.top.mas_equalTo(self.timeNameLabel.mas_bottom).offset(3);
+        make.left.mas_equalTo(self.timeNameLabel);
+        make.right.mas_equalTo(self.timeLabel.mas_right).offset(-3);
         make.height.mas_equalTo(1);
         
     }];
     
-    [self.timeNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(self.timeLabel);
-        make.left.mas_equalTo(self.timeLabel);
-        make.top.mas_equalTo(self.leftBottomLine.mas_bottom);
-    }];
+    
 }
 
 - (void)generateData:(id)data{
     
-    NSDictionary *dic = (NSDictionary *)data;
-    self.timeLabel.text = @"2017-03-11 11：54";//dic[@"time"];
+    NSString *lastTime= (NSString *)data;
+    
+    self.timeLabel.text = lastTime;//dic[@"time"];
 }
 
 - (UILabel *)timeNameLabel {
