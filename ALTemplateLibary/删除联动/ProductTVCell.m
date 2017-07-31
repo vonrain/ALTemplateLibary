@@ -180,18 +180,7 @@
 	return _detialView;
 }
 
-//- (UITableView *)productTableView {
-//	if (_productTableView == nil) {
-//        _productTableView = [[UITableView alloc] init];
-//        _productTableView.delegate = self;
-//        _productTableView.dataSource = self;
-//        _productTableView.scrollEnabled = NO;
-//        _productTableView.tableHeaderView = self.headView;
-//        _productTableView.tableFooterView = self.footViewBtn;
-//        
-//	}
-//	return _productTableView;
-//}
+
 - (UITableView *)productTableView {
     if (_productTableView == nil) {
         _productTableView = [[UITableView alloc] init];
@@ -211,18 +200,27 @@
     if (_maskView == nil) {
         _maskView = [[UIView alloc] init];
         _maskView.layer.borderColor=[UIColor grayColor].CGColor;
-        _maskView.layer.borderWidth=0.5;
-        _maskView.layer.cornerRadius=10;
+//        _maskView.layer.borderWidth=0.5;
+//        _maskView.layer.cornerRadius=10;
         
         _maskView.backgroundColor = [UIColor blackColor];
         _maskView.alpha = .5f;
         UITapGestureRecognizer *tapGesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(event:)];
         [_maskView addGestureRecognizer:tapGesture];
         
-        UIButton *clearBtn= [[UIButton alloc] initWithFrame:CGRectMake(160, 60, 40, 40)];
-        [clearBtn addTarget:self action:@selector(delCell:) forControlEvents:UIControlEventTouchUpInside];
-        clearBtn.backgroundColor = [UIColor blueColor];
+        UIButton *clearBtn= [[UIButton alloc] init];
         [_maskView addSubview:clearBtn];
+        [clearBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(60, 20));
+            make.center.mas_equalTo(self.maskView);
+        }];
+        [clearBtn setTitle:@"不再展示" forState:UIControlStateNormal];
+        clearBtn.titleLabel.font = [UIFont systemFontOfSize:11];
+        clearBtn.layer.borderColor=[UIColor whiteColor].CGColor;
+        clearBtn.layer.borderWidth=1;
+        clearBtn.layer.cornerRadius=5;
+        
+        [clearBtn addTarget:self action:@selector(delCell:) forControlEvents:UIControlEventTouchUpInside];
         _maskView.hidden = YES;
         
     }
