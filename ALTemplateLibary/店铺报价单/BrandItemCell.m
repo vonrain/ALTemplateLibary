@@ -170,7 +170,7 @@
          }] ;
         
         
-        MyLog(@"rangeArr is %@", rangeArr);
+//        MyLog(@"rangeArr is %@", rangeArr);
         
         for (int k = 0; k < rangeArr.count; k++) {
             

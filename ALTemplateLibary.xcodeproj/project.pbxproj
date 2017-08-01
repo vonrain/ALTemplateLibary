@@ -17,10 +17,10 @@
 		C7176FD41F2EDED2007F6B99 /* ProductItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7176FCA1F2EDED2007F6B99 /* ProductItemCell.m */; };
 		C7176FD51F2EDED2007F6B99 /* ProductsListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C7176FCC1F2EDED2007F6B99 /* ProductsListVC.m */; };
 		C7176FD61F2EDED2007F6B99 /* ProductTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7176FCE1F2EDED2007F6B99 /* ProductTVCell.m */; };
-		C7176FE01F2EDEE4007F6B99 /* BrandItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7176FD91F2EDEE4007F6B99 /* BrandItemCell.m */; };
-		C7176FE11F2EDEE4007F6B99 /* BrandPriceListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7176FDB1F2EDEE4007F6B99 /* BrandPriceListCell.m */; };
-		C7176FE21F2EDEE4007F6B99 /* HeadTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7176FDD1F2EDEE4007F6B99 /* HeadTipsView.m */; };
-		C7176FE31F2EDEE4007F6B99 /* ShopPricListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C7176FDF1F2EDEE4007F6B99 /* ShopPricListVC.m */; };
+		C7176FED1F2F0507007F6B99 /* BrandItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7176FE61F2F0507007F6B99 /* BrandItemCell.m */; };
+		C7176FEE1F2F0507007F6B99 /* BrandPriceListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7176FE81F2F0507007F6B99 /* BrandPriceListCell.m */; };
+		C7176FEF1F2F0507007F6B99 /* HeadTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7176FEA1F2F0507007F6B99 /* HeadTipsView.m */; };
+		C7176FF01F2F0507007F6B99 /* ShopPricListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C7176FEC1F2F0507007F6B99 /* ShopPricListVC.m */; };
 		C72EB5E21F185B850069AB83 /* 删除联动.json in Resources */ = {isa = PBXBuildFile; fileRef = C72EB5E11F185B850069AB83 /* 删除联动.json */; };
 		C74B00C91F1F3232000AF7B4 /* cg0091_te.json in Resources */ = {isa = PBXBuildFile; fileRef = C74B00C81F1F3232000AF7B4 /* cg0091_te.json */; };
 		C74B00CC1F20AD77000AF7B4 /* NSString+Range.m in Sources */ = {isa = PBXBuildFile; fileRef = C74B00CB1F20AD77000AF7B4 /* NSString+Range.m */; };
@@ -87,14 +87,14 @@
 		C7176FCC1F2EDED2007F6B99 /* ProductsListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductsListVC.m; sourceTree = "<group>"; };
 		C7176FCD1F2EDED2007F6B99 /* ProductTVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductTVCell.h; sourceTree = "<group>"; };
 		C7176FCE1F2EDED2007F6B99 /* ProductTVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductTVCell.m; sourceTree = "<group>"; };
-		C7176FD81F2EDEE4007F6B99 /* BrandItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrandItemCell.h; sourceTree = "<group>"; };
-		C7176FD91F2EDEE4007F6B99 /* BrandItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrandItemCell.m; sourceTree = "<group>"; };
-		C7176FDA1F2EDEE4007F6B99 /* BrandPriceListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrandPriceListCell.h; sourceTree = "<group>"; };
-		C7176FDB1F2EDEE4007F6B99 /* BrandPriceListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrandPriceListCell.m; sourceTree = "<group>"; };
-		C7176FDC1F2EDEE4007F6B99 /* HeadTipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadTipsView.h; sourceTree = "<group>"; };
-		C7176FDD1F2EDEE4007F6B99 /* HeadTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadTipsView.m; sourceTree = "<group>"; };
-		C7176FDE1F2EDEE4007F6B99 /* ShopPricListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopPricListVC.h; sourceTree = "<group>"; };
-		C7176FDF1F2EDEE4007F6B99 /* ShopPricListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopPricListVC.m; sourceTree = "<group>"; };
+		C7176FE51F2F0507007F6B99 /* BrandItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrandItemCell.h; sourceTree = "<group>"; };
+		C7176FE61F2F0507007F6B99 /* BrandItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrandItemCell.m; sourceTree = "<group>"; };
+		C7176FE71F2F0507007F6B99 /* BrandPriceListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrandPriceListCell.h; sourceTree = "<group>"; };
+		C7176FE81F2F0507007F6B99 /* BrandPriceListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrandPriceListCell.m; sourceTree = "<group>"; };
+		C7176FE91F2F0507007F6B99 /* HeadTipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadTipsView.h; sourceTree = "<group>"; };
+		C7176FEA1F2F0507007F6B99 /* HeadTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadTipsView.m; sourceTree = "<group>"; };
+		C7176FEB1F2F0507007F6B99 /* ShopPricListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopPricListVC.h; sourceTree = "<group>"; };
+		C7176FEC1F2F0507007F6B99 /* ShopPricListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopPricListVC.m; sourceTree = "<group>"; };
 		C72EB5E11F185B850069AB83 /* 删除联动.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "删除联动.json"; sourceTree = "<group>"; };
 		C74B00C81F1F3232000AF7B4 /* cg0091_te.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cg0091_te.json; sourceTree = "<group>"; };
 		C74B00CA1F20AD77000AF7B4 /* NSString+Range.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Range.h"; sourceTree = "<group>"; };
@@ -211,19 +211,19 @@
 			path = "比价单";
 			sourceTree = "<group>";
 		};
-		C7176FD71F2EDEE4007F6B99 /* 店铺比价单 */ = {
+		C7176FE41F2F0507007F6B99 /* 店铺报价单 */ = {
 			isa = PBXGroup;
 			children = (
-				C7176FD81F2EDEE4007F6B99 /* BrandItemCell.h */,
-				C7176FD91F2EDEE4007F6B99 /* BrandItemCell.m */,
-				C7176FDA1F2EDEE4007F6B99 /* BrandPriceListCell.h */,
-				C7176FDB1F2EDEE4007F6B99 /* BrandPriceListCell.m */,
-				C7176FDC1F2EDEE4007F6B99 /* HeadTipsView.h */,
-				C7176FDD1F2EDEE4007F6B99 /* HeadTipsView.m */,
-				C7176FDE1F2EDEE4007F6B99 /* ShopPricListVC.h */,
-				C7176FDF1F2EDEE4007F6B99 /* ShopPricListVC.m */,
+				C7176FE51F2F0507007F6B99 /* BrandItemCell.h */,
+				C7176FE61F2F0507007F6B99 /* BrandItemCell.m */,
+				C7176FE71F2F0507007F6B99 /* BrandPriceListCell.h */,
+				C7176FE81F2F0507007F6B99 /* BrandPriceListCell.m */,
+				C7176FE91F2F0507007F6B99 /* HeadTipsView.h */,
+				C7176FEA1F2F0507007F6B99 /* HeadTipsView.m */,
+				C7176FEB1F2F0507007F6B99 /* ShopPricListVC.h */,
+				C7176FEC1F2F0507007F6B99 /* ShopPricListVC.m */,
 			);
-			path = "店铺比价单";
+			path = "店铺报价单";
 			sourceTree = "<group>";
 		};
 		C72EB5E01F185B850069AB83 /* StaticData */ = {
@@ -299,7 +299,7 @@
 				C7959A171F185931003D3519 /* 工具 */,
 				C787A4901F0E3FC4006E2D0A /* Collection横向Tableview单元格 */,
 				C787A4991F0E3FC4006E2D0A /* tableview横向tableview单元格 */,
-				C7176FD71F2EDEE4007F6B99 /* 店铺比价单 */,
+				C7176FE41F2F0507007F6B99 /* 店铺报价单 */,
 				C7176FBE1F2EDED2007F6B99 /* 比价单 */,
 				C74B00CD1F244293000AF7B4 /* 商品比价 */,
 				C787A4621F0E37F4006E2D0A /* Assets.xcassets */,
@@ -587,10 +587,10 @@
 				C74B00DC1F2579AF000AF7B4 /* ColorSortingView.m in Sources */,
 				C7176FD01F2EDED2007F6B99 /* MoreProductsView.m in Sources */,
 				C7176FD11F2EDED2007F6B99 /* MoreProductVC.m in Sources */,
-				C7176FE11F2EDEE4007F6B99 /* BrandPriceListCell.m in Sources */,
-				C7176FE31F2EDEE4007F6B99 /* ShopPricListVC.m in Sources */,
+				C7176FEE1F2F0507007F6B99 /* BrandPriceListCell.m in Sources */,
+				C7176FF01F2F0507007F6B99 /* ShopPricListVC.m in Sources */,
 				C78153251F2CC210009B34EC /* GoodsPriceModel.m in Sources */,
-				C7176FE01F2EDEE4007F6B99 /* BrandItemCell.m in Sources */,
+				C7176FED1F2F0507007F6B99 /* BrandItemCell.m in Sources */,
 				C787A49F1F0E3FC4006E2D0A /* LongPressChangeVC.m in Sources */,
 				C7176FD31F2EDED2007F6B99 /* ProductHeadView.m in Sources */,
 				C7176FD21F2EDED2007F6B99 /* ParityListVC.m in Sources */,
@@ -603,7 +603,7 @@
 				C7176FD61F2EDED2007F6B99 /* ProductTVCell.m in Sources */,
 				C74B00D91F24EF0D000AF7B4 /* HeadTimeView.m in Sources */,
 				C7959A1A1F185931003D3519 /* ALHelper.m in Sources */,
-				C7176FE21F2EDEE4007F6B99 /* HeadTipsView.m in Sources */,
+				C7176FEF1F2F0507007F6B99 /* HeadTipsView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
